@@ -473,7 +473,7 @@ async function showSiteSummary(latlng) {
     if (allLoaded) {
       buildTrackComparison(latlng, token, compare);
     } else {
-      const btn = el("button", "track-compare-btn", "📊 Alle Tracks vergleichen");
+      const btn = el("button", "track-compare-btn", "Alle Tracks vergleichen");
       btn.addEventListener("click", (ev) => {
         ev.stopPropagation(); // the button is removed from the DOM below; it must not reach the map as a click
         buildTrackComparison(latlng, token, compare);
