@@ -739,3 +739,19 @@ async function tryAutoLoadOverHttp() {
 }
 
 tryAutoLoadOverHttp();
+
+// ---------------- collapsible sidebar ----------------
+// Starts collapsed on narrow screens (phones) so the map gets the full screen.
+(function () {
+  const btn = document.getElementById("sidebar-toggle");
+  const narrow = window.matchMedia("(max-width: 700px)");
+  const setCollapsed = (collapsed) => {
+    document.body.classList.toggle("sidebar-collapsed", collapsed);
+    btn.setAttribute("aria-expanded", String(!collapsed));
+    // on wide screens the map area grows/shrinks with the sidebar
+    setTimeout(() => state.map && state.map.invalidateSize(), 300);
+  };
+  btn.addEventListener("click", () => setCollapsed(!document.body.classList.contains("sidebar-collapsed")));
+  setCollapsed(narrow.matches);
+  narrow.addEventListener("change", (e) => setCollapsed(e.matches));
+})();
