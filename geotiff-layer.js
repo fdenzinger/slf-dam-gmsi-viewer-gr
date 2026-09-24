@@ -78,8 +78,16 @@ const GeoTiffColorLayer = L.GridLayer.extend({
 });
 
 // helper: build a layer + fitBounds-ready LatLngBounds for one manifest entry
-async function makeGeoTiffLayer(file, kind) {
-  const tiff = await GeoTIFF.fromBlob(file);
+async function makeGeoTiffLayer(source, kind) {
+  // source is either { url } (streamed over HTTP range requests -- only the
+  // bytes a visible tile needs are fetched) or a local File/Blob.
+  // 4 MB blocks: the host (Zenodo) rate-limits by request *count*, not bytes.
+  // Measured on a zoom-then-pan of 24 tiles: 64 KB blocks = 34 requests,
+  // 4 MB blocks = 12, at the price of ~1.6x the bytes.
+  const tiff =
+    source && source.url
+      ? await GeoTIFF.fromUrl(source.url, { blockSize: 4 * 1024 * 1024, cacheSize: 32 })
+      : await GeoTIFF.fromBlob(source);
   const image = await tiff.getImage(0);
   const nodata = image.getGDALNoData();
   const bboxNative = image.getBoundingBox(); // [xmin,ymin,xmax,ymax] in EPSG:2056

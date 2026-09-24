@@ -341,3 +341,16 @@ html, body {
 
 /* download progress / error hint on lazily loaded layers */
 .layer-status { font-size: 12px; color: #888; margin-left: auto; }
+
+/* "PROTOTYPE" corner ribbon (top-left of the page); click-through */
+#prototype-ribbon {
+  position: fixed; top: 0; left: 0; width: 84px; height: 84px;
+  overflow: hidden; pointer-events: none; z-index: 1000;
+}
+#prototype-ribbon span {
+  position: absolute; top: 15px; left: -34px; width: 120px;
+  padding: 3px 0; transform: rotate(-45deg);
+  background: #d9541e; color: #fff; text-align: center;
+  font: 700 9px/1 -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  letter-spacing: 0.14em; box-shadow: 0 2px 5px rgba(0,0,0,0.35);
+}

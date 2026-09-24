@@ -11,6 +11,25 @@ if (typeof proj4 !== "undefined") {
   );
 }
 
+// Zenodo rate-limits anonymous requests (~133 per minute per IP) and geotiff.js
+// has no retry logic, so a 429 would show up as blank tiles. Wait for the
+// window to reset (X-RateLimit-Reset is exposed to cross-origin scripts) and
+// retry instead.
+(function () {
+  const nativeFetch = window.fetch.bind(window);
+  window.fetch = async function (input, init) {
+    const url = typeof input === "string" ? input : input && input.url;
+    if (!url || !url.startsWith("https://zenodo.org/")) return nativeFetch(input, init);
+    for (let attempt = 0; ; attempt++) {
+      const resp = await nativeFetch(input, init);
+      if (resp.status !== 429 || attempt >= 3) return resp;
+      const reset = Number(resp.headers.get("x-ratelimit-reset"));
+      const wait = reset ? reset * 1000 - Date.now() + 500 : 2000 * (attempt + 1);
+      await new Promise((r) => setTimeout(r, Math.min(Math.max(wait, 1000), 65000)));
+    }
+  };
+})();
+
 const state = {
   map: null,
   mode: "easy",
@@ -683,16 +702,12 @@ dropzone.addEventListener("drop", async (e) => {
 const ZENODO_RECORD_ID = "22937496";
 const RASTER_BASE_URL = `https://zenodo.org/api/records/${ZENODO_RECORD_ID}/files/`;
 
-async function fetchRasterFile(entry) {
-  const resp = await fetch(`${RASTER_BASE_URL}${entry.file}/content`);
-  if (!resp.ok) throw new Error(`HTTP ${resp.status} für ${entry.file}`);
-  return new File([await resp.blob()], entry.file);
-}
-
-// The composite is what's shown at start and best-orbit (23 MB) feeds the
-// click popup, so those two load up front (~300 MB); the ~10 per-track and
-// shadow/layover layers (~800 MB) are only downloaded once someone switches
-// them on.
+// The COGs are streamed with HTTP range requests, so "loading" a layer only
+// reads its header (a few requests) and then fetches tile data as the map
+// needs it. The composite is shown at start and best-orbit feeds the click
+// popup, so those two are opened up front; the other layers are only opened
+// when someone switches them on (saves rate-limit budget too).
+const remoteSource = (entry) => ({ name: entry.file, url: `${RASTER_BASE_URL}${entry.file}/content` });
 const isEagerLayer = (entry) => entry.defaultOn || entry.kind === "orbit";
 
 async function tryAutoLoadOverHttp() {
@@ -703,19 +718,14 @@ async function tryAutoLoadOverHttp() {
   msg.classList.remove("hidden");
   const statusEl = document.getElementById("load-status");
 
-  const results = await Promise.all(
-    LAYER_MANIFEST.filter(isEagerLayer).map(async (entry) => {
-      try {
-        return await fetchRasterFile(entry);
-      } catch (err) {
-        console.warn("Auto-load: konnte nicht laden:", entry.file, err);
-        return null;
-      }
-    })
-  );
-  const files = results.filter(Boolean);
-
-  if (files.length === 0) {
+  const eager = LAYER_MANIFEST.filter(isEagerLayer);
+  try {
+    // one tiny ranged request: if the record is unreachable, fall back to the
+    // manual picker instead of showing an empty map
+    const probe = await fetch(remoteSource(eager[0]).url, { headers: { Range: "bytes=0-15" } });
+    if (!probe.ok) throw new Error(`HTTP ${probe.status}`);
+  } catch (err) {
+    console.warn("Auto-load: Daten nicht erreichbar:", err);
     msg.classList.add("hidden");
     dropzone.classList.remove("hidden");
     statusEl.className = "error";
@@ -724,7 +734,7 @@ async function tryAutoLoadOverHttp() {
   }
 
   msg.classList.add("hidden");
-  await loadProject(files, { lazyFetch: fetchRasterFile });
+  await loadProject(eager.map(remoteSource), { lazyFetch: async (entry) => remoteSource(entry) });
   return true;
 }
 
