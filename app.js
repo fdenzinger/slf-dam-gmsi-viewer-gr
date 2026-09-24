@@ -419,6 +419,7 @@ async function loadLazyLayer(file) {
     const rasterFile = await entry.lazyFetch();
     const { layer } = await makeGeoTiffLayer(rasterFile, entry.manifest.kind);
     entry.leafletLayer = layer;
+    if (entry.opacity != null) layer.setOpacity(entry.opacity); // slider moved before the layer finished loading
     if (entry.statusEl) entry.statusEl.textContent = "";
     if (entry.checked) layer.addTo(state.map);
   } catch (err) {
@@ -505,7 +506,35 @@ function buildSidebar() {
         row.appendChild(note);
       }
 
-      groupDiv.appendChild(row);
+      // transparency slider (only shown while the layer is ticked, see CSS)
+      const item = document.createElement("div");
+      item.className = "layer-item";
+      item.appendChild(row);
+
+      const defaultOpacity = manifest.kind === "orbit" ? 0.75 : 1; // matches makeGeoTiffLayer
+      const opRow = document.createElement("div");
+      opRow.className = "opacity-row";
+      const opLabel = document.createElement("span");
+      opLabel.textContent = "Transparenz";
+      const slider = document.createElement("input");
+      slider.type = "range";
+      slider.min = "0"; slider.max = "100"; slider.step = "5";
+      slider.value = String(Math.round((1 - defaultOpacity) * 100));
+      slider.setAttribute("aria-label", `Transparenz ${manifest.label}`);
+      const opValue = document.createElement("span");
+      opValue.className = "opacity-value";
+      opValue.textContent = `${slider.value} %`;
+      slider.addEventListener("input", () => {
+        const opacity = 1 - Number(slider.value) / 100;
+        opValue.textContent = `${slider.value} %`;
+        const e = state.layers[file];
+        e.opacity = opacity;
+        if (e.leafletLayer) e.leafletLayer.setOpacity(opacity);
+      });
+      opRow.append(opLabel, slider, opValue);
+      item.appendChild(opRow);
+
+      groupDiv.appendChild(item);
     });
 
     tree.appendChild(groupDiv);

@@ -399,3 +399,13 @@ body.sidebar-collapsed #sidebar-toggle svg { transform: rotate(180deg); }
   html, body, #app { height: 100dvh; }
 }
 #sidebar-toggle { touch-action: manipulation; -webkit-tap-highlight-color: transparent; }
+
+
+/* per-layer transparency slider, visible only for ticked layers */
+.opacity-row {
+  display: none; align-items: center; gap: 8px;
+  padding: 0 0 6px 26px; font-size: 12px; color: #666;
+}
+.layer-item:has(input[type=checkbox]:checked) .opacity-row { display: flex; }
+.opacity-row input[type=range] { flex: 1; min-width: 0; accent-color: var(--slf-blue); }
+.opacity-value { width: 34px; text-align: right; }
