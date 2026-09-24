@@ -176,6 +176,45 @@ const BasemapControl = L.Control.extend({
   },
 });
 
+// on-map "copy link to this view" button, same size/look as the basemap
+// button and stacked directly above it
+const ShareControl = L.Control.extend({
+  options: { position: "bottomleft" },
+  onAdd: function () {
+    const container = L.DomUtil.create("div", "leaflet-bar basemap-control share-control");
+    const button = L.DomUtil.create("a", "basemap-control-btn", container);
+    button.href = "#";
+    button.title = "Link zu dieser Ansicht kopieren";
+    button.setAttribute("role", "button");
+    button.setAttribute("aria-label", "Link zu dieser Ansicht kopieren");
+    button.innerHTML =
+      '<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#1c1e21" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">' +
+      '<path d="M10 13a5 5 0 0 0 7.07 0l3-3a5 5 0 0 0-7.07-7.07l-1.5 1.5"/>' +
+      '<path d="M14 11a5 5 0 0 0-7.07 0l-3 3a5 5 0 0 0 7.07 7.07l1.5-1.5"/>' +
+      "</svg>";
+    const toast = L.DomUtil.create("div", "share-toast hidden", container);
+
+    L.DomEvent.disableClickPropagation(container);
+    button.addEventListener("click", async (e) => {
+      e.preventDefault();
+      writeHash(); // make sure the address bar is current before copying
+      let ok = true;
+      try {
+        await navigator.clipboard.writeText(location.href);
+      } catch (err) {
+        ok = false;
+        window.prompt("Link zu dieser Ansicht:", location.href); // no clipboard access (e.g. plain http)
+      }
+      if (ok) {
+        toast.textContent = "Link kopiert";
+        toast.classList.remove("hidden");
+        setTimeout(() => toast.classList.add("hidden"), 2000);
+      }
+    });
+    return container;
+  },
+});
+
 // ---------------------------------------------------------------- click-to-query
 
 async function readRasterValue(leafletLayer, latlng) {
@@ -429,11 +468,12 @@ async function showSiteSummary(latlng) {
       return !en || en.leafletLayer;
     })
   );
-  if (cv !== null || allLoaded) {
+  {
+    // always offered: even where the composite has no value, the per-track table shows why (e.g. radar shadow)
     if (allLoaded) {
       buildTrackComparison(latlng, token, compare);
     } else {
-      const btn = el("button", "track-compare-btn", "Alle Tracks vergleichen");
+      const btn = el("button", "track-compare-btn", "📊 Alle Tracks vergleichen");
       btn.addEventListener("click", (ev) => {
         ev.stopPropagation(); // the button is removed from the DOM below; it must not reach the map as a click
         buildTrackComparison(latlng, token, compare);
@@ -535,6 +575,7 @@ async function loadProject(fileList, options = {}) {
 
   state.map = L.map("map", { crs: CRS_LV95, zoomSnap: 1, zoomDelta: 1, zoomControl: true, attributionControl: true });
   new BasemapControl().addTo(state.map);
+  new ShareControl().addTo(state.map); // added second, so it stacks above the basemap button
 
   // small logo-link control factory: an image wrapped in a link that opens
   // in a new tab, used for both the SLF logo (top-right) and the DAM
@@ -1030,17 +1071,3 @@ tryAutoLoadOverHttp();
   const onChange = (e) => setCollapsed(e.matches);
   narrow.addEventListener ? narrow.addEventListener("change", onChange) : narrow.addListener(onChange);
 })();
-
-// ---------------- share button ----------------
-document.getElementById("share-btn").addEventListener("click", async () => {
-  const btn = document.getElementById("share-btn");
-  const original = btn.textContent;
-  writeHash(); // make sure the address bar is current before copying
-  try {
-    await navigator.clipboard.writeText(location.href);
-    btn.textContent = "✓ Link kopiert";
-  } catch (err) {
-    window.prompt("Link zu dieser Ansicht:", location.href); // no clipboard access (e.g. plain http)
-  }
-  setTimeout(() => (btn.textContent = original), 2000);
-});

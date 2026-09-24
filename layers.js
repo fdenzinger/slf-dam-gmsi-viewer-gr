@@ -25,12 +25,12 @@ const TRACK_RGB = {};
 for (const k in TRACK_COLORS) TRACK_RGB[k] = hexToRgb(TRACK_COLORS[k]);
 
 const TRACK_INFO = {
-  A015: { richtung: "aufsteigend", nummer: 15, hinweis: "" },
-  A088: { richtung: "aufsteigend", nummer: 88, hinweis: "nur sehr kleine Abdeckung (~1%) im Kantonsgebiet" },
-  A117: { richtung: "aufsteigend", nummer: 117, hinweis: "" },
-  D066: { richtung: "absteigend", nummer: 66, hinweis: "" },
-  D139: { richtung: "absteigend", nummer: 139, hinweis: "keine Abdeckung im Kanton Graubünden" },
-  D168: { richtung: "absteigend", nummer: 168, hinweis: "" },
+  A015: { richtung: "ascending", nummer: 15, hinweis: "" },
+  A088: { richtung: "ascending", nummer: 88, hinweis: "nur sehr kleine Abdeckung (~1%) im Kantonsgebiet" },
+  A117: { richtung: "ascending", nummer: 117, hinweis: "" },
+  D066: { richtung: "descending", nummer: 66, hinweis: "" },
+  D139: { richtung: "descending", nummer: 139, hinweis: "keine Abdeckung im Kanton Graubünden" },
+  D168: { richtung: "descending", nummer: 168, hinweis: "" },
 };
 
 const TRANSPARENT = [0, 0, 0, 0];

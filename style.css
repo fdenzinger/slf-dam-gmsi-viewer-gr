@@ -205,7 +205,7 @@ html, body {
 /* ---------------- info button + modal ---------------- */
 
 #info-btn {
-  margin-bottom: 8px;
+  margin-bottom: 16px;
   width: 100%;
   background: white;
   border: 1px solid var(--border);
@@ -411,15 +411,6 @@ body.sidebar-collapsed #sidebar-toggle svg { transform: rotate(180deg); }
 .opacity-value { width: 34px; text-align: right; }
 
 
-/* share button (same look as the info button) */
-#share-btn {
-  margin-bottom: 16px; width: 100%; background: white;
-  border: 1px solid var(--border); border-radius: 6px;
-  padding: 8px 10px; font-size: 13px; text-align: left;
-  cursor: pointer; color: var(--text);
-}
-#share-btn:hover { background: #eef3f6; border-color: var(--slf-blue); }
-
 /* ---------------- site summary popup ---------------- */
 .site-summary { font-size: 13px; line-height: 1.45; }
 .site-summary p { margin: 6px 0; }
@@ -444,3 +435,12 @@ body.sidebar-collapsed #sidebar-toggle svg { transform: rotate(180deg); }
 .track-compare-btn:hover { background: #eef3f6; }
 .site-foot { color: #666; font-size: 11px; margin-bottom: 0; }
 .site-note { color: #888; font-size: 11px; margin-top: 2px; }
+
+/* on-map share button: sits above the basemap button, with a small toast */
+.share-control { margin-bottom: 6px !important; }
+.share-toast {
+  position: absolute; left: 40px; top: 50%; transform: translateY(-50%);
+  background: #1c1e21; color: #fff; font-size: 12px; padding: 5px 9px;
+  border-radius: 4px; white-space: nowrap; pointer-events: none;
+}
+.track-compare-btn { font-weight: 600; padding: 8px 10px !important; }
