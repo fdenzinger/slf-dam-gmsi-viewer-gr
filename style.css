@@ -205,7 +205,7 @@ html, body {
 /* ---------------- info button + modal ---------------- */
 
 #info-btn {
-  margin-bottom: 16px;
+  margin-bottom: 8px;
   width: 100%;
   background: white;
   border: 1px solid var(--border);
@@ -409,3 +409,38 @@ body.sidebar-collapsed #sidebar-toggle svg { transform: rotate(180deg); }
 .layer-item:has(input[type=checkbox]:checked) .opacity-row { display: flex; }
 .opacity-row input[type=range] { flex: 1; min-width: 0; accent-color: var(--slf-blue); }
 .opacity-value { width: 34px; text-align: right; }
+
+
+/* share button (same look as the info button) */
+#share-btn {
+  margin-bottom: 16px; width: 100%; background: white;
+  border: 1px solid var(--border); border-radius: 6px;
+  padding: 8px 10px; font-size: 13px; text-align: left;
+  cursor: pointer; color: var(--text);
+}
+#share-btn:hover { background: #eef3f6; border-color: var(--slf-blue); }
+
+/* ---------------- site summary popup ---------------- */
+.site-summary { font-size: 13px; line-height: 1.45; }
+.site-summary p { margin: 6px 0; }
+.site-summary .verdict {
+  display: flex; align-items: baseline; justify-content: space-between; gap: 8px;
+  padding: 6px 10px; border-radius: 6px; color: #fff; font-size: 14px;
+}
+.verdict-good { background: #1A9641; }
+.verdict-mid { background: #d98a1f; }
+.verdict-bad { background: #D7191C; }
+.verdict-none { background: #777; }
+.verdict-value { font-size: 12px; opacity: 0.95; }
+.site-summary .track-table { width: 100%; border-collapse: collapse; font-size: 12px; margin-top: 4px; }
+.track-table th { text-align: left; color: #666; font-weight: 600; padding: 2px 4px; border-bottom: 1px solid var(--border); }
+.track-table td { padding: 2px 4px; }
+.track-table .muted { color: #888; }
+.track-table .dot { display: inline-block; width: 10px; height: 10px; border-radius: 2px; margin-right: 6px; }
+.track-compare-btn {
+  width: 100%; padding: 6px 8px; font-size: 12px; cursor: pointer;
+  background: white; border: 1px solid var(--slf-blue); color: var(--slf-blue); border-radius: 6px;
+}
+.track-compare-btn:hover { background: #eef3f6; }
+.site-foot { color: #666; font-size: 11px; margin-bottom: 0; }
+.site-note { color: #888; font-size: 11px; margin-top: 2px; }

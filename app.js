@@ -125,6 +125,7 @@ function setBasemap(name) {
 // so the two stay in sync no matter which one the user touches
 function chooseBasemap(name) {
   setBasemap(name);
+  scheduleHashUpdate();
   document.querySelectorAll(".basemap-control-item").forEach((el) => {
     el.classList.toggle("active", el.dataset.value === name);
   });
@@ -197,45 +198,269 @@ async function readRasterValue(leafletLayer, latlng) {
   }
 }
 
-async function onMapClick(e) {
-  const latlng = e.latlng;
-  const popup = L.popup({ maxWidth: 280 }).setLatLng(latlng).setContent("Lade …").openOn(state.map);
+// ---------------------------------------------------------------- shareable link (URL hash)
+//
+// The current view is mirrored into the URL hash, e.g.
+//   #ll=46.8123,9.5234&z=9&b=grau&l=composite,A015&o=A015:50&p=46.80,9.52
+// (centre, zoom, basemap, ticked layers, non-default opacity, clicked spot).
+// Copy the address bar (or use the share button) to send exactly this view.
 
+const layerId = (file) => file.replace(/^GMSI_GR_/, "").replace(/\.tif$/, "").replace("shadow_layover_", "S_");
+const fileForLayerId = (id) => Object.keys(state.layers).find((f) => layerId(f) === id);
+
+function buildHash() {
+  const p = new URLSearchParams();
+  const c = state.map.getCenter();
+  p.set("ll", `${c.lat.toFixed(5)},${c.lng.toFixed(5)}`);
+  p.set("z", String(state.map.getZoom()));
+  p.set("b", state.currentBasemap);
+  if (state.mode === "expert") p.set("m", "e");
+  const on = [], ops = [];
+  for (const f in state.layers) {
+    const en = state.layers[f];
+    if (en.manifest.group === 0) continue;
+    if (en.checked) on.push(layerId(f));
+    const def = en.manifest.kind === "orbit" ? 0.75 : 1;
+    if (en.opacity != null && Math.abs(en.opacity - def) > 0.001) ops.push(`${layerId(f)}:${Math.round(en.opacity * 100)}`);
+  }
+  p.set("l", on.join(","));
+  if (ops.length) p.set("o", ops.join(","));
+  if (state.pin) p.set("p", `${state.pin.lat.toFixed(5)},${state.pin.lng.toFixed(5)}`);
+  // keep commas readable in the URL
+  return p.toString().replace(/%2C/g, ",").replace(/%3A/g, ":");
+}
+
+function writeHash() {
+  if (!state.hashReady || !state.map) return;
+  try {
+    history.replaceState(null, "", location.pathname + location.search + "#" + buildHash());
+  } catch (err) { /* e.g. sandboxed frame: sharing simply falls back to the plain URL */ }
+}
+let hashTimer = null;
+function scheduleHashUpdate() {
+  if (!state.hashReady) return;
+  clearTimeout(hashTimer);
+  hashTimer = setTimeout(writeHash, 300);
+}
+
+function setLayerOpacity(file, opacity) {
+  const en = state.layers[file];
+  if (!en) return;
+  en.opacity = opacity;
+  if (en.leafletLayer) en.leafletLayer.setOpacity(opacity);
+  if (en.sliderEl) {
+    en.sliderEl.value = String(Math.round((1 - opacity) * 100));
+    en.sliderEl.dispatchEvent(new Event("input")); // refreshes the % label
+  }
+}
+
+function applyHashState() {
+  const p = new URLSearchParams(location.hash.replace(/^#/, ""));
+  if (![...p.keys()].length) return;
+  const num = (s) => (s === null || s === "" ? NaN : Number(s));
+
+  const [lat, lng] = (p.get("ll") || "").split(",").map(num);
+  const z = num(p.get("z"));
+  if (Number.isFinite(lat) && Number.isFinite(lng) && Number.isFinite(z)) {
+    state.map.setView([lat, lng], Math.max(0, Math.min(14, Math.round(z))), { animate: false });
+  }
+  const b = p.get("b");
+  if (b && state.basemaps[b]) chooseBasemap(b);
+
+  const ids = (p.get("l") || "").split(",").filter(Boolean);
+  const files = ids.map(fileForLayerId).filter(Boolean);
+  const needsExpert = p.get("m") === "e" || files.some((f) => state.layers[f].manifest.group !== 1);
+  if (needsExpert) setMode("expert");
+  if (needsExpert && p.has("l")) {
+    for (const f in state.layers) {
+      const en = state.layers[f];
+      if (en.manifest.group === 0) continue;
+      const want = files.includes(f);
+      if (en.checked !== want) {
+        if (en.checkboxEl) en.checkboxEl.checked = want;
+        toggleLayer(f, want);
+      }
+    }
+  }
+  for (const pair of (p.get("o") || "").split(",").filter(Boolean)) {
+    const [id, pct] = pair.split(":");
+    const f = fileForLayerId(id);
+    if (f && Number.isFinite(num(pct))) setLayerOpacity(f, Math.max(0, Math.min(1, num(pct) / 100)));
+  }
+  const [plat, plng] = (p.get("p") || "").split(",").map(num);
+  if (Number.isFinite(plat) && Number.isFinite(plng)) showSiteSummary(L.latLng(plat, plng));
+}
+
+// ---------------------------------------------------------------- site summary
+//
+// Clicking the map opens a plain-language summary for that spot: verdict from
+// the composite, best track, and (loaded on demand, because each track file is
+// a separate download) a comparison of all tracks. The clicked point is also
+// stored in the share link, so a shared link reopens the same summary.
+
+function verdictFor(v) {
+  if (v === null) {
+    return {
+      cls: "none", title: "Keine Daten",
+      text: "An dieser Stelle liegen keine Werte vor: entweder ausserhalb von Graubünden oder in keinem Track auswertbar (Radarschatten, Layover oder zu geringe Kohärenz).",
+    };
+  }
+  if (v >= 0.4) return { cls: "good", title: "Gut geeignet", text: "Hier sind gute Radarmessungen mit Sentinel‑1 wahrscheinlich." };
+  if (v >= 0.2) return { cls: "mid", title: "Eingeschränkt geeignet", text: "Messungen sind möglich, die Ergebnisse sollten aber mit Vorsicht interpretiert werden." };
+  return {
+    cls: "bad", title: "Schwierig",
+    text: "Gute Messungen sind hier schwer zu erhalten. Ein tiefer Wert kann an der Geometrie liegen oder an einer sich rasch verändernden Oberfläche (z. B. Vegetation, Schnee oder eine Rutschung).",
+  };
+}
+
+function el(tag, className, text) {
+  const n = document.createElement(tag);
+  if (className) n.className = className;
+  if (text !== undefined) n.textContent = text;
+  return n;
+}
+
+// best-effort terrain height from swisstopo; never blocks the summary
+async function fetchHeight(x, y) {
+  try {
+    const r = await fetch(`https://api3.geo.admin.ch/rest/services/height?easting=${x}&northing=${y}&sr=2056`);
+    if (!r.ok) return null;
+    const h = Number((await r.json()).height);
+    return Number.isFinite(h) ? Math.round(h) : null;
+  } catch (err) {
+    return null;
+  }
+}
+
+async function buildTrackComparison(latlng, token, container) {
+  container.textContent = "Lade alle Tracks …";
+  if (state.summaryPopup) state.summaryPopup.update();
+  // open all per-track files in parallel (only headers, a few requests each)
+  await Promise.all(
+    TRACKS_GR.flatMap((t) => [`GMSI_GR_${t}.tif`, `GMSI_GR_shadow_layover_${t}.tif`])
+      .filter((f) => state.layers[f])
+      .map((f) => loadLazyLayer(f))
+  );
   const rows = [];
+  for (const t of TRACKS_GR) {
+    const gEntry = state.layers[`GMSI_GR_${t}.tif`];
+    const sEntry = state.layers[`GMSI_GR_shadow_layover_${t}.tif`];
+    if (!gEntry) continue;
+    if (token !== state.summaryToken) return; // another spot was clicked meanwhile
+    const g = gEntry.leafletLayer ? await readRasterValue(gEntry.leafletLayer, latlng) : null;
+    const sh = sEntry && sEntry.leafletLayer ? await readRasterValue(sEntry.leafletLayer, latlng) : null;
+    rows.push({ t, g, geometryBlocked: sh === 5 || sh === 17 || sh === 21 });
+  }
+  if (token !== state.summaryToken) return;
+
+  container.textContent = "";
+  const table = el("table", "track-table");
+  const head = el("tr");
+  ["Track", "Richtung", "GMSI"].forEach((h) => head.appendChild(el("th", "", h)));
+  table.appendChild(head);
+  let good = 0;
+  for (const r of rows) {
+    const tr = el("tr");
+    tr.appendChild(el("td", "", r.t));
+    tr.appendChild(el("td", "", TRACK_INFO[r.t].richtung));
+    const td = el("td");
+    if (r.g !== null) {
+      const dot = el("span", "dot");
+      dot.style.background = r.g >= 0.4 ? "#1A9641" : r.g >= 0.2 ? "#FDB863" : "#D7191C";
+      td.append(dot, document.createTextNode(r.g.toFixed(2)));
+      if (r.g >= 0.4) good++;
+    } else {
+      td.textContent = r.geometryBlocked ? "Schatten/Layover" : "keine Daten";
+      td.className = "muted";
+    }
+    tr.appendChild(td);
+    table.appendChild(tr);
+  }
+  container.appendChild(table);
+
+  let msg;
+  if (good === 0) msg = "In keinem Track sind gute Werte (≥ 0.4) vorhanden.";
+  else if (good === 1) msg = "Nur in einem Track gut messbar – das ist anfälliger als Orte, die in mehreren Tracks gut messbar sind.";
+  else msg = `In ${good} von ${rows.length} Tracks gut messbar – die Messbarkeit ist robust.`;
+  container.appendChild(el("p", "track-msg", msg));
+  if (state.summaryPopup) state.summaryPopup.update(); // grow + re-pan into view
+}
+
+async function showSiteSummary(latlng) {
+  const token = (state.summaryToken = (state.summaryToken || 0) + 1);
+  const popup = L.popup({ maxWidth: 300, className: "site-popup", autoPanPaddingTopLeft: [20, 70], autoPanPaddingBottomRight: [20, 20] })
+    .setLatLng(latlng)
+    .setContent("Lade …")
+    .openOn(state.map);
+  state.summaryPopup = popup;
+  state.pin = latlng; // set after openOn: opening closes the previous popup, which clears the pin
+  scheduleHashUpdate();
+
+  const [x, y] = proj4("EPSG:4326", "EPSG:2056", [latlng.lng, latlng.lat]);
+  const heightPromise = fetchHeight(x.toFixed(0), y.toFixed(0));
 
   const composite = state.layers["GMSI_GR_composite.tif"];
-  if (composite) {
-    const v = await readRasterValue(composite.leafletLayer, latlng);
-    if (v !== null) rows.push(`<div><strong>GMSI Übersicht:</strong> ${v.toFixed(2)} – ${gmsiLabel(v)}</div>`);
-  }
-
+  const cv = composite && composite.leafletLayer ? await readRasterValue(composite.leafletLayer, latlng) : null;
   const bestOrbit = state.layers["GMSI_GR_best_orbit.tif"];
-  if (bestOrbit) {
-    const v = await readRasterValue(bestOrbit.leafletLayer, latlng);
-    if (v !== null) {
-      const track = ORBIT_INDEX_ORDER[Math.round(v)];
-      if (track) rows.push(`<div><strong>Bester Track:</strong> ${track}</div>`);
-    }
+  const ov = bestOrbit && bestOrbit.leafletLayer ? await readRasterValue(bestOrbit.leafletLayer, latlng) : null;
+  if (token !== state.summaryToken) return;
+
+  const verdict = verdictFor(cv);
+  const box = el("div", "site-summary");
+  L.DomEvent.disableClickPropagation(box); // clicks on the button/table must not trigger a new map click
+  const head = el("div", `verdict verdict-${verdict.cls}`);
+  head.appendChild(el("strong", "", verdict.title));
+  if (cv !== null) head.appendChild(el("span", "verdict-value", `GMSI ${cv.toFixed(2)}`));
+  box.appendChild(head);
+  box.appendChild(el("p", "verdict-text", verdict.text));
+
+  const track = ov !== null ? ORBIT_INDEX_ORDER[Math.round(ov)] : null;
+  if (track && TRACK_INFO[track]) {
+    const p = el("p", "best-track");
+    p.appendChild(el("strong", "", "Bester Track: "));
+    p.appendChild(document.createTextNode(`${track} (${TRACK_INFO[track].richtung})`));
+    box.appendChild(p);
   }
 
-  // any currently visible (checked) per-track GMSI or shadow/layover layers
-  for (const file in state.layers) {
-    const entry = state.layers[file];
-    if (!entry.checked || entry.manifest.group === 1 || !entry.leafletLayer) continue;
-    if (entry.manifest.kind === "gmsi") {
-      const v = await readRasterValue(entry.leafletLayer, latlng);
-      if (v !== null) rows.push(`<div>GMSI ${entry.manifest.label}: ${v.toFixed(2)} – ${gmsiLabel(v)}</div>`);
-    } else if (entry.manifest.kind === "shadow") {
-      const v = await readRasterValue(entry.leafletLayer, latlng);
-      if (v !== null) rows.push(`<div>${entry.manifest.label} (Shadow/Layover): ${shadowLayoverLabel(v)}</div>`);
-    }
-  }
-
-  popup.setContent(
-    rows.length
-      ? `<div class="point-popup">${rows.join("")}</div>`
-      : `<div class="point-popup">Keine Daten an dieser Stelle.</div>`
+  const compare = el("div", "track-compare");
+  const allLoaded = TRACKS_GR.every((t) =>
+    ["GMSI_GR_", "GMSI_GR_shadow_layover_"].every((pre) => {
+      const en = state.layers[`${pre}${t}.tif`];
+      return !en || en.leafletLayer;
+    })
   );
+  if (cv !== null || allLoaded) {
+    if (allLoaded) {
+      buildTrackComparison(latlng, token, compare);
+    } else {
+      const btn = el("button", "track-compare-btn", "Alle Tracks vergleichen");
+      btn.addEventListener("click", (ev) => {
+        ev.stopPropagation(); // the button is removed from the DOM below; it must not reach the map as a click
+        buildTrackComparison(latlng, token, compare);
+      });
+      compare.appendChild(btn);
+    }
+  }
+  box.appendChild(compare);
+
+  const foot = el("p", "site-foot");
+  box.appendChild(foot);
+  const fmt = (n) => Math.round(n).toLocaleString("de-CH");
+  foot.textContent = `LV95 E ${fmt(x)} / N ${fmt(y)}`;
+  heightPromise.then((h) => {
+    if (h !== null) foot.textContent += ` · ${h} m ü. M.`;
+    popup.update();
+  });
+  box.appendChild(el("p", "site-note", "Basierend auf Sommerdaten 2018–2021. Bei Schneebedeckung sind Messungen nicht möglich."));
+
+  popup.setContent(box);
+}
+
+function onMapClick(e) {
+  // clicks inside an open popup (button, table) are not map clicks
+  const t = e.originalEvent && e.originalEvent.target;
+  if (t && t.closest && t.closest(".leaflet-popup")) return;
+  showSiteSummary(e.latlng);
 }
 
 // ---------------------------------------------------------------- file collection
@@ -400,6 +625,13 @@ async function loadProject(fileList, options = {}) {
 
   buildSidebar();
   setMode("easy");
+  state.map.on("popupclose", (ev) => {
+    if (ev.popup === state.summaryPopup) { state.pin = null; scheduleHashUpdate(); }
+  });
+  state.map.on("moveend", scheduleHashUpdate);
+  applyHashState();
+  state.hashReady = true;
+  writeHash();
 
   document.getElementById("loader").classList.add("hidden");
   document.getElementById("app").classList.remove("hidden");
@@ -437,6 +669,7 @@ async function toggleLayer(file, on) {
   const entry = state.layers[file];
   if (!entry) return;
   entry.checked = on;
+  scheduleHashUpdate();
   if (on && !entry.leafletLayer) {
     updateLegend();
     await loadLazyLayer(file);
@@ -530,7 +763,9 @@ function buildSidebar() {
         const e = state.layers[file];
         e.opacity = opacity;
         if (e.leafletLayer) e.leafletLayer.setOpacity(opacity);
+        scheduleHashUpdate();
       });
+      state.layers[file].sliderEl = slider;
       opRow.append(opLabel, slider, opValue);
       item.appendChild(opRow);
 
@@ -594,6 +829,7 @@ function legendBlock(title, items) {
 
 function setMode(mode) {
   state.mode = mode;
+  scheduleHashUpdate();
   document.getElementById("mode-easy").classList.toggle("active", mode === "easy");
   document.getElementById("mode-expert").classList.toggle("active", mode === "expert");
 
@@ -794,3 +1030,17 @@ tryAutoLoadOverHttp();
   const onChange = (e) => setCollapsed(e.matches);
   narrow.addEventListener ? narrow.addEventListener("change", onChange) : narrow.addListener(onChange);
 })();
+
+// ---------------- share button ----------------
+document.getElementById("share-btn").addEventListener("click", async () => {
+  const btn = document.getElementById("share-btn");
+  const original = btn.textContent;
+  writeHash(); // make sure the address bar is current before copying
+  try {
+    await navigator.clipboard.writeText(location.href);
+    btn.textContent = "✓ Link kopiert";
+  } catch (err) {
+    window.prompt("Link zu dieser Ansicht:", location.href); // no clipboard access (e.g. plain http)
+  }
+  setTimeout(() => (btn.textContent = original), 2000);
+});
