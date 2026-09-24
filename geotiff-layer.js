@@ -103,7 +103,7 @@ async function makeGeoTiffLayer(source, kind) {
 
   const layer = new GeoTiffColorLayer(tiff, bboxNative, colorFnForKind(kind), nodata, {
     resampleMethod: kind === "hillshade" ? "bilinear" : "nearest",
-    opacity: kind === "orbit" ? 0.75 : 1,
+    opacity: defaultOpacityForKind(kind),
     zIndex: kind === "hillshade" ? 0 : 10,
     attribution,
     // best-orbit is a categorical track-color overlay -- Multiply lets the

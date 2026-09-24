@@ -36,9 +36,11 @@ const TRACK_INFO = {
 const TRANSPARENT = [0, 0, 0, 0];
 
 // GMSI "Ampel" (traffic-light) classification, matching the SLF slide "Einstufung GMSI"
-const GMSI_RED = [215, 25, 28, 191];     // #D7191C @ opacity 0.75 (191/255)
-const GMSI_ORANGE = [253, 184, 99, 191]; // #FDB863
-const GMSI_GREEN = [26, 150, 65, 191];   // #1A9641
+// colours are fully opaque; the 75 % default opacity is applied per layer
+// (see defaultOpacityForKind) so the transparency slider shows the real value
+const GMSI_RED = [215, 25, 28, 255];     // #D7191C
+const GMSI_ORANGE = [253, 184, 99, 255]; // #FDB863
+const GMSI_GREEN = [26, 150, 65, 255];   // #1A9641
 function gmsiColor(v, nodata) {
   if (v === nodata || v === null || v === undefined || Number.isNaN(v)) return TRANSPARENT;
   if (v < 0.2) return GMSI_RED;
@@ -121,4 +123,9 @@ function colorFnForKind(kind) {
     case "hillshade": return hillshadeColor;
     default: return () => TRANSPARENT;
   }
+}
+
+// default layer opacity: GMSI classes and the best-track overlay start at 75 %
+function defaultOpacityForKind(kind) {
+  return kind === "gmsi" || kind === "orbit" ? 0.75 : 1;
 }

@@ -259,7 +259,7 @@ function buildHash() {
     const en = state.layers[f];
     if (en.manifest.group === 0) continue;
     if (en.checked) on.push(layerId(f));
-    const def = en.manifest.kind === "orbit" ? 0.75 : 1;
+    const def = defaultOpacityForKind(en.manifest.kind);
     if (en.opacity != null && Math.abs(en.opacity - def) > 0.001) ops.push(`${layerId(f)}:${Math.round(en.opacity * 100)}`);
   }
   p.set("l", on.join(","));
@@ -785,7 +785,7 @@ function buildSidebar() {
       item.className = "layer-item";
       item.appendChild(row);
 
-      const defaultOpacity = manifest.kind === "orbit" ? 0.75 : 1; // matches makeGeoTiffLayer
+      const defaultOpacity = defaultOpacityForKind(manifest.kind);
       const opRow = document.createElement("div");
       opRow.className = "opacity-row";
       const opLabel = document.createElement("span");
