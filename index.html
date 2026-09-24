@@ -71,40 +71,46 @@
 
     <h2>Wie ist die Karte zu lesen?</h2>
     <ul>
-      <li><span class="dot" style="background:#1A9641"></span><strong>Grün (GMSI ≥ 0.4):</strong> sehr gute Bedingungen – der Satellit kann Bewegungen hier zuverlässig messen.</li>
+      <li><span class="dot" style="background:#1A9641"></span><strong>Grün (GMSI ≥ 0.4):</strong> sehr gute Bedingungen – hier sind gute Radarmessungen wahrscheinlich.</li>
       <li><span class="dot" style="background:#FDB863"></span><strong>Gelb (GMSI 0.2–0.4):</strong> Messungen sind möglich, Ergebnisse sollten aber mit Vorsicht interpretiert werden.</li>
-      <li><span class="dot" style="background:#D7191C"></span><strong>Rot (GMSI &lt; 0.2):</strong> schlechte Bedingungen – Bewegungen können leicht übersehen werden oder sind schwer zu interpretieren.</li>
+      <li><span class="dot" style="background:#D7191C"></span><strong>Rot (GMSI &lt; 0.2):</strong> schlechte Bedingungen – gute Messungen sind schwieriger zu erhalten, und Bewegungen können leicht übersehen werden oder sind schwer zu interpretieren. Ganz unmöglich sind Messungen aber nicht.</li>
+      <li><span class="dot" style="background:#ffffff;border:1px solid #bbb"></span><strong>Ohne Farbe:</strong> keine Daten. Das sind Gebiete im Radarschatten oder mit Layover-Verzerrung sowie Gebiete, in denen die Radarbilder schon nach 6&nbsp;Tagen nicht mehr zuverlässig vergleichbar sind.</li>
     </ul>
 
     <h2>Wichtig: Rot heisst nicht automatisch „keine Bewegung“</h2>
     <p>
-      Ein tiefer GMSI-Wert kann zwei ganz unterschiedliche Ursachen haben – und die Karte allein
+      Ein tiefer GMSI-Wert kann ganz unterschiedliche Ursachen haben – und die Karte allein
       zeigt nicht, welche davon zutrifft:
     </p>
     <ol>
       <li>Die Geometrie ist ungünstig, z.&nbsp;B. ein Steilhang, den der Satellit aus seiner
         Blickrichtung nicht gut einsehen kann.</li>
-      <li>Der Untergrund selbst ist bereits instabil und bewegt sich – gerade das kann dazu
-        führen, dass die Radarmessung gestört wird.</li>
+      <li>Die Erdoberfläche verändert sich rasch, sodass die Radarbilder schnell nicht mehr
+        vergleichbar sind – z.&nbsp;B. durch Vegetation oder Schnee, aber auch durch eine
+        Rutschung, die sich schnell bewegt.</li>
+      <li>Beides trifft gleichzeitig zu.</li>
     </ol>
     <p>
       Das heisst: Ein tiefer Wert an einer bekannten oder vermuteten Rutschung kann selbst ein
       Hinweis auf die Instabilität sein – nicht nur ein Zeichen für schlechte Messbedingungen.
+      Ein tiefer Wert bedeutet ausserdem nicht, dass Radarmessungen unmöglich sind – es wird nur
+      schwieriger, mehrere gute Radarbild-Paare zu erhalten, und die Bewegungswerte sind weniger
+      zuverlässig.
     </p>
 
     <h2>Was die Karte nicht zeigt</h2>
     <ul>
       <li>Die Karte beruht auf <strong>Sommerdaten aus den Jahren 2018–2021</strong> und zeigt damit
-        Bestfall-Bedingungen. Im Winter oder bei Schneebedeckung sind Messungen unabhängig vom
-        GMSI-Wert grundsätzlich nicht möglich.</li>
+        Bestfall-Bedingungen. Solange Schnee liegt, sind Messungen unabhängig vom
+        GMSI-Wert nicht möglich.</li>
       <li>Gebiete, die sich genau während 2018–2021 stark verändert haben, können in der Karte
         tiefere Werte zeigen, auch wenn sich die Bedingungen seither wieder verbessert haben.</li>
     </ul>
 
     <h2>Wie wurde die Karte erstellt? (kurz erklärt)</h2>
     <p>
-      Grundlage sind Radaraufnahmen des Satelliten <strong>Sentinel&#8209;1</strong> (Copernicus-Programm
-      der europäischen Weltraumorganisation ESA). Er überfliegt die Schweiz regelmässig und liefert
+      Grundlage sind Radaraufnahmen des Satelliten <strong>Sentinel&#8209;1</strong> (Teil des europäischen
+      Erdbeobachtungsprogramms Copernicus, betrieben mit der Weltraumorganisation ESA). Er überfliegt die Schweiz regelmässig und liefert
       seine Radarbilder frei und öffentlich zugänglich. Der GMSI kombiniert daraus drei Faktoren
       pro Bildpunkt:
     </p>
@@ -121,7 +127,9 @@
     <p>
       Da mehrere Satelliten-Bahnen (Tracks) die Schweiz aus unterschiedlichen Richtungen
       überfliegen, wird zusätzlich für jeden Bildpunkt festgehalten, welche Bahn dort die besten
-      Ergebnisse liefert.
+      Ergebnisse liefert. Aufsteigende und absteigende Bahnen blicken von gegenüberliegenden
+      Seiten auf einen Hang und ergänzen sich. Ein Ort, der nur in einem einzigen Track gut
+      messbar ist, ist anfälliger als einer, der in mehreren Tracks gut messbar ist.
     </p>
 
     <h2>Empfohlenes Vorgehen</h2>
@@ -138,7 +146,7 @@
 
     <p class="source">
       Quelle: Jacquemart &amp; Manconi (2025). Datengrundlage: Kohärenzbilder des Satelliten
-      Sentinel&#8209;1 (ESA/Copernicus), Sommer 2018–2021; Digitales Höhenmodell swissALTI3D (10&nbsp;m).
+      Sentinel&#8209;1 (ESA/Copernicus), Sommer 2018–2021; digitales Höhenmodell (Gelände).
     </p>
   </div>
 </div>
