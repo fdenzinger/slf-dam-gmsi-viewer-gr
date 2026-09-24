@@ -751,7 +751,17 @@ tryAutoLoadOverHttp();
     // on wide screens the map area grows/shrinks with the sidebar
     setTimeout(() => state.map && state.map.invalidateSize(), 300);
   };
-  btn.addEventListener("click", () => setCollapsed(!document.body.classList.contains("sidebar-collapsed")));
+  const toggle = (e) => {
+    e.preventDefault();
+    setCollapsed(!document.body.classList.contains("sidebar-collapsed"));
+  };
+  btn.addEventListener("click", toggle);
+  // on phones, tapping the map (or dragging it) while the drawer is open closes it
+  // (the Leaflet map is created later, so listen on the DOM element)
+  document.getElementById("map").addEventListener("pointerdown", () => {
+    if (narrow.matches && !document.body.classList.contains("sidebar-collapsed")) setCollapsed(true);
+  });
   setCollapsed(narrow.matches);
-  narrow.addEventListener("change", (e) => setCollapsed(e.matches));
+  const onChange = (e) => setCollapsed(e.matches);
+  narrow.addEventListener ? narrow.addEventListener("change", onChange) : narrow.addListener(onChange);
 })();

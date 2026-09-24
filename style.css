@@ -392,3 +392,10 @@ body.sidebar-collapsed #sidebar-toggle svg { transform: rotate(180deg); }
   #prototype-ribbon { width: 150px; height: 150px; }
   #prototype-ribbon span { top: 36px; right: -52px; width: 190px; font-size: 12px; padding: 5px 0; }
 }
+
+/* iOS Safari: the classic 100% height includes the area behind the browser
+   toolbars; dvh tracks the visible viewport. Also avoid the 300 ms tap delay. */
+@supports (height: 100dvh) {
+  html, body, #app { height: 100dvh; }
+}
+#sidebar-toggle { touch-action: manipulation; -webkit-tap-highlight-color: transparent; }
