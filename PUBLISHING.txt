@@ -1,0 +1,76 @@
+Publishing the GMSI Graubünden viewer (free, public)
+=====================================================
+
+Architecture: this repository (the lightweight app, ~1MB) is published
+on GitHub Pages. The raster data (~1GB) goes on Zenodo, a free, permanent,
+citable data repository -- GitHub hard-blocks any file over 100MB per push
+and Pages doesn't serve Git LFS content, so the data can't live in the
+GitHub repo itself. Verified: Zenodo sends
+"Access-Control-Allow-Origin: *" on file downloads, so the app can fetch
+the data directly from Zenodo with no cross-origin issues.
+
+I can't do the two steps below myself -- they need your own Zenodo and
+GitHub accounts.
+
+STEP 1 -- Upload the data to Zenodo
+------------------------------------
+1. Go to https://zenodo.org and sign in (or create a free account, e.g.
+   via ORCID or GitHub login).
+2. Click "New upload".
+3. Upload these 12 files from the "rasters/" folder of the local
+   GMSI_GR_product folder (the data is NOT part of this repository).
+   Just these -- hillshade and coherence-decay aren't used by the web
+   viewer:
+     GMSI_GR_composite.tif
+     GMSI_GR_best_orbit.tif
+     GMSI_GR_A015.tif
+     GMSI_GR_A088.tif
+     GMSI_GR_A117.tif
+     GMSI_GR_D066.tif
+     GMSI_GR_D168.tif
+     GMSI_GR_shadow_layover_A015.tif
+     GMSI_GR_shadow_layover_A088.tif
+     GMSI_GR_shadow_layover_A117.tif
+     GMSI_GR_shadow_layover_D066.tif
+     GMSI_GR_shadow_layover_D168.tif
+4. Fill in the required metadata: title (e.g. "GMSI Graubünden -- raster
+   data"), a short description (can reuse the text from the info modal /
+   README), authors, and a license. Pick whatever license SLF/WSL
+   normally uses for open data (e.g. CC-BY-4.0 is Zenodo's common default
+   for open datasets) -- I don't want to guess this on your behalf.
+5. Click "Publish". This mints a permanent DOI and record -- it's
+   essentially permanent (new versions can be added later, but the record
+   itself can't be fully deleted), so double-check the file list before
+   publishing.
+6. After publishing, note the record ID from the URL, e.g.
+   https://zenodo.org/records/1234567 -> the ID is 1234567.
+
+STEP 2 -- Point the app at your Zenodo record
+-----------------------------------------------
+(Already done for this repository: the record ID is 22937496.)
+
+Open app.js in this folder and find this line near the top:
+
+    const ZENODO_RECORD_ID = "REPLACE_WITH_YOUR_RECORD_ID";
+
+Replace it with your actual record ID from step 1, e.g.:
+
+    const ZENODO_RECORD_ID = "1234567";
+
+STEP 3 -- Publish the app on GitHub Pages
+--------------------------------------------
+1. Create a new, empty GitHub repository (e.g. "slf-dam-gmsi-viewer-gr").
+   It needs to be public for GitHub Pages to serve it for free.
+2. Add it as the remote of this local repository and push (the app is at
+   the repo root, so pick the root folder in the next step).
+3. In the repo on GitHub: Settings -> Pages -> under "Build and
+   deployment", set Source to "Deploy from a branch", pick the branch
+   (usually "main") and the root folder.
+   Save.
+4. GitHub will build and publish the site within a minute or two, at
+   https://<your-username>.github.io/<repo-name>/ (shown on that same
+   Pages settings page once it's live).
+
+That's it -- the published page will auto-load the data from Zenodo
+exactly like the local version auto-loads from the "rasters" folder, no
+further clicks needed once it's live.
