@@ -344,15 +344,15 @@ html, body {
 
 /* "PROTOTYPE" corner ribbon (top-right of the page); click-through */
 #prototype-ribbon {
-  position: fixed; top: 0; right: 0; width: 150px; height: 150px;
+  position: fixed; top: 0; right: 0; width: 190px; height: 190px;
   overflow: hidden; pointer-events: none; z-index: 1000;
 }
 #prototype-ribbon span {
-  position: absolute; top: 30px; right: -46px; width: 210px;
-  padding: 6px 0; transform: rotate(45deg);
+  position: absolute; top: 38px; right: -58px; width: 270px;
+  padding: 8px 0; transform: rotate(45deg);
   background: #d9541e; color: #fff; text-align: center;
-  font: 700 14px/1 -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  font: 700 18px/1 -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
   letter-spacing: 0.16em; box-shadow: 0 2px 5px rgba(0,0,0,0.35);
 }
-/* keep the SLF logo (top-right map control) clear of the ribbon */
-.leaflet-top.leaflet-right { top: 100px; }
+/* keep the SLF logo (top-right map control) just left of the ribbon */
+.leaflet-top.leaflet-right { right: 190px; }
