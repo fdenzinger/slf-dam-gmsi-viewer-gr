@@ -491,7 +491,7 @@ async function showSiteSummary(latlng) {
     if (h !== null) foot.textContent += ` · ${h} m ü. M.`;
     popup.update();
   });
-  box.appendChild(el("p", "site-note", "Basierend auf Sommerdaten 2018–2021. Bei Schneebedeckung sind Messungen nicht möglich."));
+  box.appendChild(el("p", "site-note", "Basierend auf Sommerdaten 2018–2021. Bei Schneebedeckung sind zuverlässige Messungen in der Regel nicht möglich."));
 
   popup.setContent(box);
 }
