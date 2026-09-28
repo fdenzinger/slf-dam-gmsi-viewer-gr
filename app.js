@@ -876,17 +876,18 @@ function setMode(mode) {
 
   document.querySelectorAll("#layer-tree .layer-group").forEach((el) => {
     const g = el.dataset.group;
-    el.classList.toggle("hidden", mode === "easy" && g !== "1");
+    el.classList.toggle("hidden", mode === "easy" && g !== "1" && g !== "2");
   });
 
   if (mode === "easy") {
-    // clean, single-layer view: force everything except the composite off,
-    // and keep every checkbox's DOM state in sync -- not just group 1's --
-    // otherwise switching back to Erweitert shows stale "checked" boxes for
-    // layers that were actually turned off here
+    // clean, single-layer view: force everything except the composite (and
+    // the best-track-per-pixel layer, which stays available and keeps its
+    // own on/off state) off, and keep every checkbox's DOM state in sync --
+    // not just group 1's -- otherwise switching back to Erweitert shows
+    // stale "checked" boxes for layers that were actually turned off here
     for (const file in state.layers) {
       const entry = state.layers[file];
-      if (entry.manifest.group === 0) continue;
+      if (entry.manifest.group === 0 || entry.manifest.group === 2) continue;
       const shouldBeOn = entry.manifest.group === 1;
       if (entry.checked !== shouldBeOn) {
         entry.checked = shouldBeOn;
