@@ -8,4 +8,4 @@ Run locally: `python3 -m http.server 8000`, then open http://localhost:8000.
 
 Data: GMSI © Jacquemart & Manconi (2025); Copernicus Sentinel-1 (ESA); basemaps © swisstopo.
 
-License: to be defined.
+License: All rights reserved (see `LICENSE`) — prototype, not yet open source.
