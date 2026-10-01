@@ -398,6 +398,141 @@ const I18N = {
 
     "track.hinweis.a088": "only very small coverage (~1%) within the canton",
   },
+
+  // Rumantsch Grischun (RG), the standardised cross-regional written form
+  // used by the canton/Confederation for official content -- not one of
+  // the five regional idioms. Lower-confidence draft: Romansh is a very
+  // low-resource language for machine translation compared to German,
+  // Italian or English, so this needs native review (e.g. via the Lia
+  // Rumantscha) before being treated as final, more so than the other
+  // three languages here.
+  rm: {
+    "app.title": "GMSI Grischun",
+    "app.subtitle": "Ground Motion Sensitivity Index – Chantun Grischun",
+    "loader.autoLoading": "Chargiar automaticamain …",
+    "dropzone.title": "Tira qua la chartella dal project",
+    "dropzone.hint": "(la chartella «GMSI_GR_product», u almain la sutchartella «rasters»)",
+    "dropzone.or": "– u –",
+    "dropzone.pickButton": "Tscherner chartella",
+    "search.placeholder": "Tschertgar in lieu (p.ex. Cuira, Davos) …",
+    "mode.standard": "Standard",
+    "mode.expert": "Avanzà",
+    "info.button": "ℹ️ Tge mussa questa carta – e tge na mussa ella betg?",
+    "info.copyright": "© WSL Institute for Snow and Avalanche Research, SLF 2026",
+    "sidebar.toggle": "Mussar u zuppentar la trav laterala",
+    "lang.toggle": "Midar lingua",
+
+    "modal.close": "Serrar",
+    "modal.whatShows.h": "Tge mussa questa carta?",
+    "modal.whatShows.body":
+      "Il <strong>GMSI (Ground Motion Sensitivity Index)</strong> mussa quant bain in lieu en il " +
+      "Chantun Grischun po vegnir surveglià per moviments dal terren cun radar da satellit " +
+      "(Sentinel&#8209;1) – p.ex. per moviments da pendia. Il valur va da 0 (betg adattà) fin " +
+      "1 (fitg bain adattà) ed è disponibel per mintga pixel da 10×10&nbsp;meters.",
+    "modal.howToRead.h": "Co legia ins la carta?",
+    "modal.howToRead.green": "<strong>Verd (GMSI ≥ 0,4):</strong> cundiziuns fitg bunas – qua èn probablamain bunas mesiraziuns da radar.",
+    "modal.howToRead.yellow": "<strong>Mellen (GMSI 0,2–0,4):</strong> mesiraziuns èn pussaivlas, ma ils resultats duain vegnir interpretads cun prudenza.",
+    "modal.howToRead.red": "<strong>Cotschen (GMSI &lt; 0,2):</strong> cundiziuns nauschas – bunas mesiraziuns èn pli difficilas d'otenir, e moviments pon vegnir surditgads u èn difficils d'interpretar. Mesiraziuns na èn dentant betg dal tut impussibels.",
+    "modal.howToRead.none": "<strong>Senza colur:</strong> naginas datas. Quai èn regiuns en la sumbriva da radar u cun distorsiun da layover, sco er regiuns nua che ils maletgs da radar na èn pli betg cumparabels a moda fidada gia suenter 6&nbsp;dis.",
+    "modal.redWarning.h": "Impurtant: cotschen na signifitgescha betg automaticamain «nagin moviment»",
+    "modal.redWarning.intro": "In valur bass da GMSI po avair raschuns fitg differentas – e la carta sola na mussa betg tge raschun che vala:",
+    "modal.redWarning.li1": "La geometria è sfavuraivla, p.ex. ina pendia che il satellit na po betg vesair bain da sia direcziun da vista.",
+    "modal.redWarning.li2": "La surfatscha dal terren mida svelt, uschia che ils maletgs da radar na restan betg cumparabels per ditg – p.ex. pervi da vegetaziun u neiv, ma er pervi d'in moviment da terren svelt.",
+    "modal.redWarning.li3": "Omaduas chaussas valan en il medem mument.",
+    "modal.redWarning.outro":
+      "Quai signifitgescha: in valur bass tar in moviment da terren enconuschì u supponì po sez esser " +
+      "in indizi d'instabilitad – betg mo in segn da nauschas cundiziuns da mesiraziun. In valur bass " +
+      "na signifitgescha betg uschea che mesiraziuns da radar èn impussibels – i daventa mo pli " +
+      "difficil d'otegnair pliras bunas pêrs da maletgs da radar, ed ils valurs dal moviment èn damain fidads.",
+    "modal.whatNot.h": "Tge che la carta na mussa betg",
+    "modal.whatNot.li1": "La carta sa basa sin <strong>datas d'stad dals onns 2018–2021</strong> e mussa uschia las megliras cundiziuns pussaivlas. Cun covertira da neiv na èn fidadas mesiraziuns, independentamain dal valur da GMSI, per regla betg pussaivlas.",
+    "modal.whatNot.li2": "Regiuns che èn ì fitg fermamain exact durant 2018–2021 pon mussar valurs pli bass sin la carta, era sch'ils cundiziuns èn sa megliradas dapi lura.",
+    "modal.howMade.h": "Co è la carta vegnida fatga? (curta explicaziun)",
+    "modal.howMade.intro":
+      "La basa èn maletgs da radar dal satellit <strong>Sentinel&#8209;1</strong> (part dal program europeic " +
+      "d'observaziun da la terra Copernicus, manià cun l'agentura spaziala ESA). El survola la Svizra " +
+      "regularmain e metta a disposiziun ses maletgs da radar a moda libra e publica. Il GMSI " +
+      "cumbinescha trais fatgurs per mintga pixel:",
+    "modal.howMade.li1": "<strong>Fidabladad da las datas:</strong> quant sumeglia la surfatscha dal terren sin maletgs da radar en il decurs dal temp? Sche quai mida svelt (p.ex. pervi da vegetaziun, neiv u moviment dal terren), sminuescha questa sumeglianza svelt.",
+    "modal.howMade.li2": "<strong>Visibilitad:</strong> po il satellit vesair il lieu dal tut, u sta el en la sumbriva da radar resp. vegn el distorschì tras terren striv (layover)?",
+    "modal.howMade.li3": "<strong>Sensibilitad da mesiraziun:</strong> radar mesira moviment mo en la direcziun da vista dal satellit. Ina pendia che sa mova lateralmain envers il satellit è pli difficila da registrar che ina che sa mova directamain vers el u davent da el.",
+    "modal.howMade.outro":
+      "Cunquai che plirs orbitas da satellit (tracks) survolan la Svizra da direcziuns differentas, " +
+      "vegn er registrà per mintga pixel, tge orbita dat qua ils meglers resultats. Orbitas " +
+      "ascendentas e descendentas vesan ina pendia da dus lads opponids e sa cumplettan. In lieu " +
+      "che è bain mesirabel mo sin ina sulvart orbita è pli vulnerabel che in lieu bain mesirabel " +
+      "sin pliras orbitas.",
+    "modal.workflow.h": "Procedura recumandada",
+    "modal.workflow.li1": "<strong>Survista:</strong> controllar cun la survista da GMSI, sch'ina regiun po vegnir survegliada dal tut cun radar.",
+    "modal.workflow.li2": "<strong>Tscherner orbita:</strong> duvrar «La meglra orbita per pixel» per sclerir, tge orbita da satellit dat qua ils meglers resultats.",
+    "modal.workflow.li3": "<strong>GMSI per orbita:</strong> guardar la carta da quella orbita e controllar, sch'la direcziun da vista correspunda a la direcziun da moviment spetgada da la pendia.",
+    "modal.workflow.li4": "<strong>Shadow/Layover per orbita:</strong> en cas da dubis, controllar sche il lieu è en la sumbriva da radar u vegn distorschì tras layover per quella orbita.",
+    "modal.source":
+      "Funtauna: Jacquemart &amp; Manconi (2025). Datas da basa: maletgs da coerenza dal satellit " +
+      "Sentinel&#8209;1 (ESA/Copernicus), stad 2018–2021; model digital dal terren.",
+
+    "basemap.switch": "Midar la carta da fund",
+    "basemap.grau": "Carta naziunala grischa",
+    "basemap.swissimage": "SWISSIMAGE",
+    "basemap.alti3d": "Relief swissALTI3D (terren)",
+    "basemap.surface3d": "Relief swissSURFACE3D (surfatscha)",
+    "share.copyLink": "Copiar la colliaziun da questa vista",
+    "share.promptTitle": "Colliaziun da questa vista:",
+    "share.copied": "Colliaziun copiada",
+
+    "verdict.none.title": "Naginas datas",
+    "verdict.none.text": "A quest lieu n'existan naginas valurs: u è el ordaifer il Chantun Grischun, u n'è el evaluabel sin nagina orbita (sumbriva da radar, layover u memia pauca coerenza).",
+    "verdict.good.title": "Bain adattà",
+    "verdict.good.text": "Qua èn probablamain bunas mesiraziuns da radar cun Sentinel‑1.",
+    "verdict.mid.title": "Adattà cun restricziuns",
+    "verdict.mid.text": "Mesiraziuns èn pussaivlas, ma ils resultats duain vegnir interpretads cun prudenza.",
+    "verdict.bad.title": "Difficil",
+    "verdict.bad.text": "Bunas mesiraziuns èn qua difficilas d'otenir. In valur bass po avair la raschun en la geometria u en ina surfatscha che mida svelt (p.ex. vegetaziun, neiv u in moviment da terren).",
+
+    "summary.loadingAllTracks": "Chargiar tut las orbitas …",
+    "summary.table.track": "Orbita",
+    "summary.table.direction": "Direcziun",
+    "summary.table.gmsi": "GMSI",
+    "summary.shadowLayover": "Sumbriva/Layover",
+    "summary.noData": "naginas datas",
+    "summary.msg.none": "Sin nagina orbita datti bunas valurs (≥ 0,4).",
+    "summary.msg.one": "Mo bain mesirabel sin ina sulvart orbita – quai è pli vulnerabel che lieus mesirabels sin pliras orbitas.",
+    "summary.msg.many": "Bain mesirabel sin {good} da {total} orbitas – la mesirabilitad è robusta.",
+    "summary.loading": "Chargiar …",
+    "summary.bestTrack": "La meglra orbita: ",
+    "summary.compareAllBtn": "Cumparegliar tut las orbitas",
+    "summary.elevation": " m sur mar",
+    "summary.note": "Sa basond sin datas d'stad 2018–2021. Cun covertira da neiv na èn fidadas mesiraziuns per regla betg pussaivlas.",
+
+    "load.noMatchingFiles": "Naginas datotecas GMSI correspundentas chattadas en la chartella tschernida.\nPertge tscherner la chartella «GMSI_GR_product» (u «rasters»).",
+    "load.loadingOverview": "Chargiar la survista …",
+    "load.loadingN": "Chargiar {found} da {total} nivels …",
+    "load.loadedMissing": "Chargià. Betg chattà (sursiglì): {missing}",
+    "load.layerLoading": "chargiond …",
+    "load.layerError": "Errur tar il chargiar",
+    "load.readingFolder": "Legier la chartella …",
+    "load.autoFailed": "Il chargiar automatic n'ha betg reussì. Tscherna per plaschair ina chartella a moda manuala.",
+
+    "sidebar.opacity": "Transparenza",
+    "sidebar.opacityAria": "Transparenza {label}",
+    "legend.h": "Legenda",
+    "legend.gmsiTitle": "GMSI",
+    "legend.trackTitle": "Orbita",
+    "legend.shadowTitle": "Sumbriva/Layover",
+    "legend.gmsi.green": "GMSI ≥ 0,4 – cundiziuns fitg bunas",
+    "legend.gmsi.yellow": "GMSI 0,2 – 0,4 – mesiraziuns pussaivlas, ma cun prudenza",
+    "legend.gmsi.red": "GMSI < 0,2 – cundiziuns nauschas",
+    "legend.shadow": "Nagina mesiraziun pussaivla (sumbriva da radar / layover)",
+
+    "layer.composite": "Survista GMSI (la meglra valur da tut las orbitas)",
+    "layer.bestOrbit": "La meglra orbita per pixel",
+    "group.1": "1 – Survista",
+    "group.2": "2 – Tscherner orbita",
+    "group.3": "3 – GMSI per orbita",
+    "group.4": "4 – Sumbriva/Layover per orbita",
+
+    "track.hinweis.a088": "mo cuvrida fitg pitschna (~1%) en il territori chantunal",
+  },
 };
 
 function getLang() {
