@@ -1,8 +1,8 @@
 # GMSI Graubünden – web viewer
 
-Browser viewer for the Ground Motion Sensitivity Index (GMSI, Jacquemart & Manconi 2025) in canton Graubünden. Shows where Sentinel-1 InSAR can and cannot monitor ground motion. Developed within the DAM project (WP1), SLF.
+Browser viewer for the Ground Motion Sensitivity Index (GMSI, Jacquemart & Manconi 2025) in canton Graubünden. Shows where Sentinel-1 InSAR can and cannot monitor ground motion. DAM project (WP1), SLF.
 
-Static site (HTML/JS/CSS, no build step). The GeoTIFF data is hosted on Zenodo (record ID set in `app.js`, `ZENODO_RECORD_ID`) and streamed via HTTP range requests.
+Static site, no build step. GeoTIFF data is hosted on Zenodo and streamed via HTTP range requests (`ZENODO_RECORD_ID` in `app.js`).
 
 Run locally: `python3 -m http.server 8000`, then open http://localhost:8000.
 
