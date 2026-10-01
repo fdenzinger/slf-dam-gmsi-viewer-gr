@@ -24,9 +24,13 @@ const TRACK_COLORS = {
 const TRACK_RGB = {};
 for (const k in TRACK_COLORS) TRACK_RGB[k] = hexToRgb(TRACK_COLORS[k]);
 
+// hinweisKey (resolved through t() at render time) is used instead of a
+// baked-in string wherever the note is actually shown in the UI (A088); the
+// others are plain text since D139 is excluded from TRACKS_GR and this
+// table entry is unreachable (kept only for reference, like its color).
 const TRACK_INFO = {
   A015: { richtung: "ascending", nummer: 15, hinweis: "" },
-  A088: { richtung: "ascending", nummer: 88, hinweis: "nur sehr kleine Abdeckung (~1%) im Kantonsgebiet" },
+  A088: { richtung: "ascending", nummer: 88, hinweis: "", hinweisKey: "track.hinweis.a088" },
   A117: { richtung: "ascending", nummer: 117, hinweis: "" },
   D066: { richtung: "descending", nummer: 66, hinweis: "" },
   D139: { richtung: "descending", nummer: 139, hinweis: "keine Abdeckung im Kanton Graubünden" },
@@ -47,11 +51,13 @@ function gmsiColor(v, nodata) {
   if (v < 0.4) return GMSI_ORANGE;
   return GMSI_GREEN;
 }
-const GMSI_LEGEND = [
-  { color: "#1A9641", label: "GMSI ≥ 0.4 – sehr gute Bedingungen" },
-  { color: "#FDB863", label: "GMSI 0.2 – 0.4 – Messungen möglich, aber mit Vorsicht" },
-  { color: "#D7191C", label: "GMSI < 0.2 – schlechte Bedingungen" },
-];
+function gmsiLegend() {
+  return [
+    { color: "#1A9641", label: t("legend.gmsi.green") },
+    { color: "#FDB863", label: t("legend.gmsi.yellow") },
+    { color: "#D7191C", label: t("legend.gmsi.red") },
+  ];
+}
 
 // GAMMA ls_map codes: 1 = visible/no issue (not colored); 5 = layover,
 // 17 = shadow, 21 = layover in shadow are collapsed into a single "no data
@@ -64,9 +70,9 @@ function shadowLayoverColor(v, nodata) {
   if (v === 5 || v === 17 || v === 21) return SHADOW_NO_DATA;
   return TRANSPARENT; // includes value 1 (visible, no issue)
 }
-const SHADOW_LEGEND = [
-  { color: "#5A5A5A", label: "Keine Messung möglich (Radarschatten / Layover)" },
-];
+function shadowLegend() {
+  return [{ color: "#5A5A5A", label: t("legend.shadow") }];
+}
 
 // best-orbit categorical index: 0=A015 .. 5=D168 (order fixed by the source data)
 const ORBIT_INDEX_ORDER = ["A015", "A088", "A117", "D066", "D139", "D168"];
@@ -78,7 +84,7 @@ function bestOrbitColor(v, nodata) {
   return [r, g, b, 255];
 }
 function bestOrbitLegend() {
-  return TRACKS_GR.map((t) => ({ color: TRACK_COLORS[t], label: t }));
+  return TRACKS_GR.map((tr) => ({ color: TRACK_COLORS[tr], label: tr }));
 }
 
 function hillshadeColor(v, nodata) {
@@ -87,22 +93,22 @@ function hillshadeColor(v, nodata) {
   return [g, g, g, 255];
 }
 
-// manifest of expected files -> { group, label, kind }
-// "kind" selects which color function + legend to use
+// manifest of expected files -> { group, label/labelKey, kind }
+// "kind" selects which color function + legend to use. Group 1/2 entries
+// carry a labelKey (resolved through t() at render time, so the sidebar
+// relabels live on a language switch) instead of a baked-in string; group
+// 3/4 entries use the track code itself as the label, which is already
+// language-independent.
 const LAYER_MANIFEST = [
-  { file: "GMSI_GR_composite.tif", group: 1, label: "GMSI Übersicht (bester Wert aller Tracks)", kind: "gmsi", defaultOn: true },
-  { file: "GMSI_GR_best_orbit.tif", group: 2, label: "Bester Track pro Pixel", kind: "orbit" },
-  ...TRACKS_GR.map((t) => ({ file: `GMSI_GR_${t}.tif`, group: 3, label: t, kind: "gmsi" })),
-  ...TRACKS_GR.map((t) => ({ file: `GMSI_GR_shadow_layover_${t}.tif`, group: 4, label: t, kind: "shadow" })),
+  { file: "GMSI_GR_composite.tif", group: 1, labelKey: "layer.composite", kind: "gmsi", defaultOn: true },
+  { file: "GMSI_GR_best_orbit.tif", group: 2, labelKey: "layer.bestOrbit", kind: "orbit" },
+  ...TRACKS_GR.map((tr) => ({ file: `GMSI_GR_${tr}.tif`, group: 3, label: tr, kind: "gmsi" })),
+  ...TRACKS_GR.map((tr) => ({ file: `GMSI_GR_shadow_layover_${tr}.tif`, group: 4, label: tr, kind: "shadow" })),
 ];
 
-const GROUP_LABELS = {
-  0: null, // hillshade: not shown as a toggleable group
-  1: "1 – Übersicht",
-  2: "2 – Track wählen",
-  3: "3 – GMSI pro Track",
-  4: "4 – Shadow/Layover pro Track",
-};
+function groupLabel(g) {
+  return g === "0" || g === 0 ? null : t(`group.${g}`);
+}
 
 // text-label counterparts of the color functions, for the click-to-query popup
 function gmsiLabel(v) {
