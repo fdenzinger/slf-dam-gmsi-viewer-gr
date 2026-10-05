@@ -35,8 +35,8 @@ const I18N = {
       "0 (ungeeignet) bis 1 (sehr gut geeignet) und liegt für jeden 10×10&nbsp;Meter grossen " +
       "Bildpunkt vor.",
     "modal.howToRead.h": "Wie ist die Karte zu lesen?",
-    "modal.howToRead.green": "<strong>Grün (GMSI ≥ 0.4):</strong> sehr gute Bedingungen – hier sind gute Radarmessungen wahrscheinlich.",
-    "modal.howToRead.yellow": "<strong>Gelb (GMSI 0.2–0.4):</strong> Messungen sind möglich, Ergebnisse sollten aber mit Vorsicht interpretiert werden.",
+    "modal.howToRead.green": "<strong>Blau (GMSI ≥ 0.4):</strong> sehr gute Bedingungen – hier sind gute Radarmessungen wahrscheinlich.",
+    "modal.howToRead.yellow": "<strong>Orange (GMSI 0.2–0.4):</strong> Messungen sind möglich, Ergebnisse sollten aber mit Vorsicht interpretiert werden.",
     "modal.howToRead.red": "<strong>Rot (GMSI &lt; 0.2):</strong> schlechte Bedingungen – gute Messungen sind schwieriger zu erhalten, und Bewegungen können leicht übersehen werden oder sind schwer zu interpretieren. Ganz unmöglich sind Messungen aber nicht.",
     "modal.howToRead.none": "<strong>Ohne Farbe:</strong> keine Daten. Das sind Gebiete im Radarschatten oder mit Layover-Verzerrung sowie Gebiete, in denen die Radarbilder schon nach 6&nbsp;Tagen nicht mehr zuverlässig vergleichbar sind.",
     "modal.redWarning.h": "Wichtig: Rot heisst nicht automatisch „keine Bewegung“",
@@ -168,8 +168,8 @@ const I18N = {
       "Il valore va da 0 (non adatto) a 1 (molto adatto) ed è disponibile per ogni pixel di " +
       "10×10&nbsp;metri.",
     "modal.howToRead.h": "Come si legge la carta?",
-    "modal.howToRead.green": "<strong>Verde (GMSI ≥ 0,4):</strong> condizioni molto buone – qui sono probabili buone misurazioni radar.",
-    "modal.howToRead.yellow": "<strong>Giallo (GMSI 0,2–0,4):</strong> le misurazioni sono possibili, ma i risultati vanno interpretati con cautela.",
+    "modal.howToRead.green": "<strong>Blu (GMSI ≥ 0,4):</strong> condizioni molto buone – qui sono probabili buone misurazioni radar.",
+    "modal.howToRead.yellow": "<strong>Arancione (GMSI 0,2–0,4):</strong> le misurazioni sono possibili, ma i risultati vanno interpretati con cautela.",
     "modal.howToRead.red": "<strong>Rosso (GMSI &lt; 0,2):</strong> condizioni sfavorevoli – è più difficile ottenere buone misurazioni, e i movimenti possono essere facilmente trascurati o difficili da interpretare. Le misurazioni non sono però del tutto impossibili.",
     "modal.howToRead.none": "<strong>Senza colore:</strong> nessun dato. Si tratta di zone in ombra radar o con distorsione da layover, nonché di zone in cui le immagini radar non sono più confrontabili in modo affidabile già dopo 6&nbsp;giorni.",
     "modal.redWarning.h": "Importante: rosso non significa automaticamente «nessun movimento»",
@@ -301,8 +301,8 @@ const I18N = {
       "0 (unsuitable) to 1 (very well suited) and is given for every 10×10&nbsp;metre " +
       "pixel.",
     "modal.howToRead.h": "How to read the map",
-    "modal.howToRead.green": "<strong>Green (GMSI ≥ 0.4):</strong> very good conditions – good radar measurements are likely here.",
-    "modal.howToRead.yellow": "<strong>Yellow (GMSI 0.2–0.4):</strong> measurements are possible, but results should be interpreted with caution.",
+    "modal.howToRead.green": "<strong>Blue (GMSI ≥ 0.4):</strong> very good conditions – good radar measurements are likely here.",
+    "modal.howToRead.yellow": "<strong>Orange (GMSI 0.2–0.4):</strong> measurements are possible, but results should be interpreted with caution.",
     "modal.howToRead.red": "<strong>Red (GMSI &lt; 0.2):</strong> poor conditions – good measurements are harder to obtain, and movements can be easily missed or difficult to interpret. Measurements are not entirely impossible, though.",
     "modal.howToRead.none": "<strong>No colour:</strong> no data. These are areas in radar shadow or with layover distortion, as well as areas where the radar images are no longer reliably comparable after just 6&nbsp;days.",
     "modal.redWarning.h": "Important: red doesn't automatically mean “no movement”",
