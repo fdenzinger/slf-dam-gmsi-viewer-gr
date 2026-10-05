@@ -106,6 +106,12 @@ function permafrostLegend() {
   return [1, 2, 3, 4, 5].map((k, i) => ({ color: rgbaToCss(PERMAFROST_COLORS[k]).replace(/, 1\)$/, ")"), label: t("legend.permafrost." + (i + 1)) }));
 }
 
+// swisstopo map overlays (WMS), shown with Multiply like the GMSI layers; the swatches repeat the colours of swisstopo's own legends
+const GLACIER_SWATCHES = ["#004DA8", "#0078FF", "#73DFFF", "#BEFFE8", "#CD8966"];
+const SLOPE_SWATCHES = ["#F2E50A", "#F46F24", "#DE055B", "#C889BB", "#4B4B4B"];
+function glacierLegend() { return GLACIER_SWATCHES.map((color, i) => ({ color, label: t("legend.glacier." + (i + 1)) })); }
+function slopeLegend() { return SLOPE_SWATCHES.map((color, i) => ({ color, label: t("legend.slope." + (i + 1)) })); }
+
 function hillshadeColor(v, nodata) {
   if (v === nodata || v === null || v === undefined || Number.isNaN(v)) return TRANSPARENT;
   const g = Math.max(0, Math.min(255, Math.round(v)));
@@ -125,6 +131,8 @@ const LAYER_MANIFEST = [
   ...TRACKS_GR.map((tr) => ({ file: `GMSI_GR_shadow_layover_${tr}.tif`, group: 4, label: tr, kind: "shadow" })),
   // additional information (Advanced mode); small file served with the viewer itself, not from Zenodo
   { file: "PERMAFROST_GR.tif", group: 5, labelKey: "layer.permafrost", kind: "permafrost", local: "extra/PERMAFROST_GR.tif" },
+  { file: "WMS_glacier", group: 5, labelKey: "layer.glacier", kind: "glacier", wms: "ch.swisstopo.geologie-gletscherausdehnung", attribution: "Gletscherausdehnung &copy; swisstopo, GLAMOS" },
+  { file: "WMS_slope", group: 5, labelKey: "layer.slope", kind: "slope", wms: "ch.swisstopo.hangneigung-ueber_30", attribution: "Hangneigung &copy; swisstopo" },
 ];
 
 function groupLabel(g) {
@@ -157,5 +165,6 @@ function colorFnForKind(kind) {
 // default layer opacity: GMSI classes, the best-track overlay and the shadow/layover layers start at 75 %
 function defaultOpacityForKind(kind) {
   if (kind === "permafrost") return 0.9; // Multiply fades light colours, so this layer starts a bit more opaque
+  if (kind === "glacier" || kind === "slope") return 0.85;
   return kind === "gmsi" || kind === "orbit" || kind === "shadow" ? 0.75 : 1;
 }
