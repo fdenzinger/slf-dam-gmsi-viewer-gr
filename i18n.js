@@ -42,7 +42,7 @@ const I18N = {
     "modal.redWarning.h": "Wichtig: Rot heisst nicht automatisch „keine Bewegung“",
     "modal.redWarning.intro": "Ein tiefer GMSI-Wert kann ganz unterschiedliche Ursachen haben – und die Karte allein zeigt nicht, welche davon zutrifft:",
     "modal.redWarning.li1": "Die Geometrie ist ungünstig, z.&nbsp;B. ein Steilhang, den der Satellit aus seiner Blickrichtung nicht gut einsehen kann.",
-    "modal.redWarning.li2": "Die Erdoberfläche verändert sich rasch, sodass die Radarbilder schnell nicht mehr vergleichbar sind – z.&nbsp;B. durch Vegetation oder Schnee, aber auch durch eine Rutschung, die sich schnell bewegt.",
+    "modal.redWarning.li2": "Die Erdoberfläche verändert sich rasch, sodass die Radarbilder schnell nicht mehr vergleichbar sind – z.&nbsp;B. durch Vegetation, Schnee oder Gletscher, aber auch durch eine Rutschung, die sich schnell bewegt.",
     "modal.redWarning.li3": "Beides trifft gleichzeitig zu.",
     "modal.redWarning.outro":
       "Das heisst: Ein tiefer Wert an einer bekannten oder vermuteten Rutschung kann selbst ein " +
@@ -86,6 +86,8 @@ const I18N = {
     "share.promptTitle": "Link zu dieser Ansicht:",
     "share.copied": "Link kopiert",
 
+    "verdict.blocked.title": "Nicht sichtbar",
+    "verdict.blocked.text": "Dieser Ort ist von allen Satellitenbahnen aus nicht einsehbar (Layover oder Radarschatten). Hier ist mit Sentinel-1 keine Messung möglich.",
     "verdict.none.title": "Keine Daten",
     "verdict.none.text": "An dieser Stelle liegen keine Werte vor: entweder ausserhalb von Graubünden oder in keinem Track auswertbar (Radarschatten, Layover oder zu geringe Kohärenz).",
     "verdict.good.title": "Gut geeignet",
@@ -128,6 +130,7 @@ const I18N = {
     "legend.gmsi.green": "GMSI ≥ 0.4 – sehr gute Bedingungen",
     "legend.gmsi.yellow": "GMSI 0.2 – 0.4 – Messungen möglich, aber mit Vorsicht",
     "legend.gmsi.red": "GMSI < 0.2 – schlechte Bedingungen",
+    "legend.gmsi.blocked": "Nicht sichtbar (Layover/Shadow)",
     "legend.shadow": "Keine Messung möglich (Radarschatten / Layover)",
 
     "layer.composite": "GMSI Übersicht (bester Wert aller Tracks)",
@@ -172,7 +175,7 @@ const I18N = {
     "modal.redWarning.h": "Importante: rosso non significa automaticamente «nessun movimento»",
     "modal.redWarning.intro": "Un valore GMSI basso può avere cause molto diverse – e la carta da sola non mostra quale si applichi:",
     "modal.redWarning.li1": "La geometria è sfavorevole, p.&nbsp;es. un pendio ripido che il satellite non riesce a osservare bene dalla sua angolazione.",
-    "modal.redWarning.li2": "La superficie del terreno cambia rapidamente, per cui le immagini radar smettono presto di essere confrontabili – p.&nbsp;es. a causa della vegetazione o della neve, ma anche di una frana che si muove velocemente.",
+    "modal.redWarning.li2": "La superficie del terreno cambia rapidamente, per cui le immagini radar smettono presto di essere confrontabili – p.&nbsp;es. a causa della vegetazione, della neve o dei ghiacciai, ma anche di una frana che si muove velocemente.",
     "modal.redWarning.li3": "Entrambe le cose si verificano contemporaneamente.",
     "modal.redWarning.outro":
       "In altre parole: un valore basso in corrispondenza di una frana nota o presunta può essere " +
@@ -216,6 +219,8 @@ const I18N = {
     "share.promptTitle": "Link di questa vista:",
     "share.copied": "Link copiato",
 
+    "verdict.blocked.title": "Non visibile",
+    "verdict.blocked.text": "Questo punto non è visibile da nessuna orbita del satellite (layover od ombra radar). Qui con Sentinel-1 non è possibile alcuna misurazione.",
     "verdict.none.title": "Nessun dato",
     "verdict.none.text": "In questo punto non sono disponibili valori: o è fuori dai Grigioni, oppure non è valutabile su nessuna orbita (ombra radar, layover o coerenza troppo bassa).",
     "verdict.good.title": "Ben adatto",
@@ -258,6 +263,7 @@ const I18N = {
     "legend.gmsi.green": "GMSI ≥ 0,4 – condizioni molto buone",
     "legend.gmsi.yellow": "GMSI 0,2 – 0,4 – misurazioni possibili, ma con cautela",
     "legend.gmsi.red": "GMSI < 0,2 – condizioni sfavorevoli",
+    "legend.gmsi.blocked": "Non visibile (layover/ombra)",
     "legend.shadow": "Nessuna misurazione possibile (ombra radar / layover)",
 
     "layer.composite": "Panoramica GMSI (miglior valore di tutte le orbite)",
@@ -302,7 +308,7 @@ const I18N = {
     "modal.redWarning.h": "Important: red doesn't automatically mean “no movement”",
     "modal.redWarning.intro": "A low GMSI value can have very different causes – and the map alone doesn't show which one applies:",
     "modal.redWarning.li1": "The geometry is unfavourable, e.&nbsp;g. a steep slope that the satellite cannot see well from its viewing angle.",
-    "modal.redWarning.li2": "The ground surface changes quickly, so the radar images stop being comparable soon – e.&nbsp;g. due to vegetation or snow, but also due to a landslide that is moving fast.",
+    "modal.redWarning.li2": "The ground surface changes quickly, so the radar images stop being comparable soon – e.&nbsp;g. due to vegetation, snow or glaciers, but also due to a landslide that is moving fast.",
     "modal.redWarning.li3": "Both apply at the same time.",
     "modal.redWarning.outro":
       "In other words: a low value at a known or suspected landslide can itself be a sign of " +
@@ -345,6 +351,8 @@ const I18N = {
     "share.promptTitle": "Link to this view:",
     "share.copied": "Link copied",
 
+    "verdict.blocked.title": "Not visible",
+    "verdict.blocked.text": "This location cannot be seen from any satellite track (layover or radar shadow). No measurement is possible here with Sentinel-1.",
     "verdict.none.title": "No data",
     "verdict.none.text": "No values are available at this location: either outside Graubünden or not evaluable on any track (radar shadow, layover, or too little coherence).",
     "verdict.good.title": "Well suited",
@@ -387,6 +395,7 @@ const I18N = {
     "legend.gmsi.green": "GMSI ≥ 0.4 – very good conditions",
     "legend.gmsi.yellow": "GMSI 0.2 – 0.4 – measurements possible, but with caution",
     "legend.gmsi.red": "GMSI < 0.2 – poor conditions",
+    "legend.gmsi.blocked": "Not visible (layover/shadow)",
     "legend.shadow": "No measurement possible (radar shadow / layover)",
 
     "layer.composite": "GMSI overview (best value across all tracks)",
