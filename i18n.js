@@ -86,8 +86,8 @@ const I18N = {
     "share.promptTitle": "Link zu dieser Ansicht:",
     "share.copied": "Link kopiert",
 
-    "verdict.blocked.title": "Nicht sichtbar",
-    "verdict.blocked.text": "Dieser Ort ist von allen Satellitenbahnen aus nicht einsehbar (Layover oder Radarschatten). Hier ist mit Sentinel-1 keine Messung möglich.",
+    "verdict.blocked.title": "Keine Messung möglich",
+    "verdict.blocked.text": "An diesem Ort liefert kein Track einen GMSI-Wert, weil er durch Layover oder Radarschatten nicht einsehbar ist. Hier ist mit Sentinel-1 keine Messung möglich.",
     "verdict.none.title": "Keine Daten",
     "verdict.none.text": "An dieser Stelle liegen keine Werte vor: entweder ausserhalb von Graubünden oder in keinem Track auswertbar (Radarschatten, Layover oder zu geringe Kohärenz).",
     "verdict.good.title": "Gut geeignet",
@@ -130,7 +130,7 @@ const I18N = {
     "legend.gmsi.green": "GMSI ≥ 0.4 – sehr gute Bedingungen",
     "legend.gmsi.yellow": "GMSI 0.2 – 0.4 – Messungen möglich, aber mit Vorsicht",
     "legend.gmsi.red": "GMSI < 0.2 – schlechte Bedingungen",
-    "legend.gmsi.blocked": "Nicht sichtbar (Layover/Shadow)",
+    "legend.gmsi.blocked": "Keine Messung möglich (Layover/Shadow)",
     "legend.shadow": "Keine Messung möglich (Radarschatten / Layover)",
 
     "layer.composite": "GMSI Übersicht (bester Wert aller Tracks)",
@@ -219,8 +219,8 @@ const I18N = {
     "share.promptTitle": "Link di questa vista:",
     "share.copied": "Link copiato",
 
-    "verdict.blocked.title": "Non visibile",
-    "verdict.blocked.text": "Questo punto non è visibile da nessuna orbita del satellite (layover od ombra radar). Qui con Sentinel-1 non è possibile alcuna misurazione.",
+    "verdict.blocked.title": "Nessuna misurazione possibile",
+    "verdict.blocked.text": "In questo punto nessuna orbita fornisce un valore GMSI, perché è nascosto da layover od ombra radar. Qui con Sentinel-1 non è possibile alcuna misurazione.",
     "verdict.none.title": "Nessun dato",
     "verdict.none.text": "In questo punto non sono disponibili valori: o è fuori dai Grigioni, oppure non è valutabile su nessuna orbita (ombra radar, layover o coerenza troppo bassa).",
     "verdict.good.title": "Ben adatto",
@@ -263,7 +263,7 @@ const I18N = {
     "legend.gmsi.green": "GMSI ≥ 0,4 – condizioni molto buone",
     "legend.gmsi.yellow": "GMSI 0,2 – 0,4 – misurazioni possibili, ma con cautela",
     "legend.gmsi.red": "GMSI < 0,2 – condizioni sfavorevoli",
-    "legend.gmsi.blocked": "Non visibile (layover/ombra)",
+    "legend.gmsi.blocked": "Nessuna misurazione possibile (layover/ombra)",
     "legend.shadow": "Nessuna misurazione possibile (ombra radar / layover)",
 
     "layer.composite": "Panoramica GMSI (miglior valore di tutte le orbite)",
@@ -351,8 +351,8 @@ const I18N = {
     "share.promptTitle": "Link to this view:",
     "share.copied": "Link copied",
 
-    "verdict.blocked.title": "Not visible",
-    "verdict.blocked.text": "This location cannot be seen from any satellite track (layover or radar shadow). No measurement is possible here with Sentinel-1.",
+    "verdict.blocked.title": "No measurement possible",
+    "verdict.blocked.text": "No track provides a GMSI value at this location because it is hidden by layover or radar shadow. No measurement is possible here with Sentinel-1.",
     "verdict.none.title": "No data",
     "verdict.none.text": "No values are available at this location: either outside Graubünden or not evaluable on any track (radar shadow, layover, or too little coherence).",
     "verdict.good.title": "Well suited",
@@ -395,7 +395,7 @@ const I18N = {
     "legend.gmsi.green": "GMSI ≥ 0.4 – very good conditions",
     "legend.gmsi.yellow": "GMSI 0.2 – 0.4 – measurements possible, but with caution",
     "legend.gmsi.red": "GMSI < 0.2 – poor conditions",
-    "legend.gmsi.blocked": "Not visible (layover/shadow)",
+    "legend.gmsi.blocked": "No measurement possible (layover/shadow)",
     "legend.shadow": "No measurement possible (radar shadow / layover)",
 
     "layer.composite": "GMSI overview (best value across all tracks)",

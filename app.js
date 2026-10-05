@@ -1022,7 +1022,7 @@ dropzone.addEventListener("drop", async (e) => {
 // large can't go through git/GitHub Pages directly -- see PUBLISHING.txt),
 // while the app itself is this static site. Fill in the record ID after
 // publishing the Zenodo upload.
-const ZENODO_RECORD_ID = "23154122";
+const ZENODO_RECORD_ID = "23154529";
 const RASTER_BASE_URL = `https://zenodo.org/api/records/${ZENODO_RECORD_ID}/files/`;
 
 // The COGs are streamed with HTTP range requests, so "loading" a layer only
