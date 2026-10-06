@@ -73,7 +73,7 @@ const I18N = {
       "0 (kaum messbar) bis 1 (sehr gut geeignet) und liegt für jeden 10×10&nbsp;Meter grossen " +
       "Bildpunkt vor.",
     "modal.howToRead.h": "Wie ist die Karte zu lesen?",
-    "modal.howToRead.green": "<strong>Blau (GMSI ≥ 0.4):</strong> gute Bedingungen – hier sind gute Radarmessungen wahrscheinlich.",
+    "modal.howToRead.green": "<strong>Blau (GMSI ≥ 0.4):</strong> gute Bedingungen – hier sind gute Radarmessungen wahrscheinlich. Das sagt nichts darüber aus, ob sich der Hang bewegt.",
     "modal.howToRead.yellow": "<strong>Orange (GMSI 0.2–0.4):</strong> Messungen sind möglich, Ergebnisse sollten aber mit Vorsicht interpretiert werden.",
     "modal.howToRead.red": "<strong>Rot (GMSI &lt; 0.2):</strong> schlechte Bedingungen – gute Messungen sind schwieriger zu erhalten, und Bewegungen können leicht übersehen werden oder sind schwer zu interpretieren. Ganz unmöglich sind Messungen aber nicht.",
     "modal.howToRead.blocked": "<strong>Grau (keine Messung möglich):</strong> Gebiete im Radarschatten oder mit Layover-Verzerrung. Hier liefert kein Track einen GMSI-Wert.",
@@ -93,6 +93,7 @@ const I18N = {
     "modal.whatNot.li1": "Die Karte beruht auf <strong>Sommerdaten aus den Jahren 2018–2021</strong> und zeigt damit Bestfall-Bedingungen. Bei Schneebedeckung sind zuverlässige Messungen unabhängig vom GMSI-Wert in der Regel nicht möglich.",
     "modal.whatNot.li2": "Gebiete, die sich genau während 2018–2021 stark verändert haben, können in der Karte tiefere Werte zeigen, auch wenn sich die Bedingungen seither wieder verbessert haben.",
     "modal.whatNot.li3": "Die Karte gilt nur für <strong>Sentinel&#8209;1 (C-Band, Wellenlänge ca. 5.4&nbsp;cm)</strong>. Dieses Band ist empfindlicher gegenüber Vegetation und schneller Bodenbewegung als langwelligere Radarsysteme; für andere Satelliten oder Blickgeometrien sagt der GMSI nichts aus.",
+    "modal.whatNot.li4": "Der GMSI beschreibt nur die <strong>Messbarkeit</strong>, nicht die Stabilität eines Hangs. Radar erfasst ausserdem nur die Bewegungskomponente in <strong>Blickrichtung des Satelliten (LOS, Line of Sight)</strong>. Auch bei blauen Werten, also soliden Messungen, bedeutet „keine gemessene Bewegung“ daher nicht automatisch „keine Bewegung“: Bewegungen quer zur Blickrichtung werden kaum oder gar nicht erfasst.",
     "modal.howMade.h": "Wie wurde die Karte erstellt? (kurz erklärt)",
     "modal.howMade.intro":
       "Grundlage sind Radaraufnahmen des Satelliten <strong>Sentinel&#8209;1</strong> (Teil des europäischen " +
@@ -148,7 +149,7 @@ const I18N = {
     "summary.noData": "keine Daten",
     "summary.msg.none": "In keinem Track sind gute Werte (≥ 0.4) vorhanden.",
     "summary.msg.one": "Nur in einem Track gut messbar – das ist anfälliger als Orte, die in mehreren Tracks gut messbar sind.",
-    "summary.msg.many": "In {good} von {total} Tracks gut messbar – die Messbarkeit ist robust.",
+    "summary.msg.many": "In {good} von {total} Tracks gut messbar – die Messbarkeit ist robust (das sagt aber nichts über Bewegungen aus).",
     "summary.loading": "Lade …",
     "summary.bestTrack": "Bester Track: ",
     "summary.compareAllBtn": "Alle Tracks vergleichen",
@@ -284,7 +285,7 @@ const I18N = {
     "tour.share.title": "Ansicht teilen",
     "tour.share.text": "Das <strong>Link-Symbol</strong> kopiert einen Link, der genau diese Ansicht wieder öffnet: Kartenausschnitt, eingeschaltete Ebenen, Basiskarte und der markierte Punkt. Praktisch zum Weitergeben.",
     "tour.note.title": "Wichtig zu wissen",
-    "tour.note.text": "<strong>Rot heisst nicht automatisch „keine Bewegung“.</strong> Es zeigt nur, dass Radar hier schlecht misst, z. B. wegen Geometrie, Vegetation, Schnee, Gletschern oder schnellen Rutschungen. Mehr dazu in diesem Dialog.",
+    "tour.note.text": "<strong>Der GMSI zeigt nur, wie gut Radar hier messen kann – nicht, ob sich etwas bewegt.</strong> Rot heisst nicht automatisch „keine Bewegung“, und Blau heisst nicht „stabil“: Radar erfasst nur die Bewegung in Blickrichtung des Satelliten (LOS). Mehr dazu in diesem Dialog.",
     "legend.shadow": "Keine Messung möglich (Radarschatten / Layover)",
 
     "layer.composite": "GMSI Übersicht (bester Wert aller Tracks)",
@@ -382,7 +383,7 @@ const I18N = {
       "Il valore va da 0 (quasi non misurabile) a 1 (molto adatto) ed è disponibile per ogni pixel di " +
       "10×10&nbsp;metri.",
     "modal.howToRead.h": "Come si legge la carta?",
-    "modal.howToRead.green": "<strong>Blu (GMSI ≥ 0,4):</strong> condizioni buone – qui sono probabili buone misurazioni radar.",
+    "modal.howToRead.green": "<strong>Blu (GMSI ≥ 0,4):</strong> condizioni buone – qui sono probabili buone misurazioni radar. Non dice nulla sul fatto che il pendio si muova o meno.",
     "modal.howToRead.yellow": "<strong>Arancione (GMSI 0,2–0,4):</strong> le misurazioni sono possibili, ma i risultati vanno interpretati con cautela.",
     "modal.howToRead.red": "<strong>Rosso (GMSI &lt; 0,2):</strong> condizioni sfavorevoli – è più difficile ottenere buone misurazioni, e i movimenti possono essere facilmente trascurati o difficili da interpretare. Le misurazioni non sono però del tutto impossibili.",
     "modal.howToRead.blocked": "<strong>Grigio (nessuna misurazione possibile):</strong> zone in ombra radar o con distorsione da layover, Qui nessun track fornisce un valore GMSI.",
@@ -402,6 +403,7 @@ const I18N = {
     "modal.whatNot.li1": "La carta si basa su <strong>dati estivi degli anni 2018–2021</strong> e mostra quindi condizioni ottimali. In presenza di copertura nevosa, misurazioni affidabili non sono generalmente possibili, indipendentemente dal valore GMSI.",
     "modal.whatNot.li2": "Le zone che sono cambiate molto proprio durante il periodo 2018–2021 possono mostrare valori più bassi sulla carta, anche se le condizioni sono migliorate nel frattempo.",
     "modal.whatNot.li3": "La carta vale solo per <strong>Sentinel&#8209;1 (banda C, lunghezza d'onda ca. 5,4&nbsp;cm)</strong>. Questa banda è più sensibile a vegetazione e movimenti rapidi del terreno rispetto a sistemi radar a lunghezza d'onda maggiore; per altri satelliti o geometrie di vista il GMSI non dice nulla.",
+    "modal.whatNot.li4": "Il GMSI descrive solo la <strong>misurabilità</strong>, non la stabilità di un pendio. Inoltre il radar rileva solo la componente del movimento nella <strong>direzione di vista del satellite (LOS, Line of Sight)</strong>. Anche con valori blu, cioè misurazioni solide, «nessun movimento misurato» non significa quindi automaticamente «nessun movimento»: i movimenti trasversali alla direzione di vista vengono rilevati poco o per nulla.",
     "modal.howMade.h": "Come è stata creata la carta? (breve spiegazione)",
     "modal.howMade.intro":
       "La base sono immagini radar del satellite <strong>Sentinel&#8209;1</strong> (parte del programma " +
@@ -457,7 +459,7 @@ const I18N = {
     "summary.noData": "nessun dato",
     "summary.msg.none": "Nessuna orbita mostra buoni valori (≥ 0,4).",
     "summary.msg.one": "Misurabile correttamente solo su un'orbita – più vulnerabile rispetto ai luoghi misurabili su più orbite.",
-    "summary.msg.many": "Misurabile correttamente su {good} delle {total} orbite – la misurabilità è robusta.",
+    "summary.msg.many": "Misurabile correttamente su {good} delle {total} orbite – la misurabilità è robusta (ma non dice nulla sui movimenti).",
     "summary.loading": "Caricamento …",
     "summary.bestTrack": "Orbita migliore: ",
     "summary.compareAllBtn": "Confronta tutte le orbite",
@@ -593,7 +595,7 @@ const I18N = {
     "tour.share.title": "Condividere la vista",
     "tour.share.text": "Il <strong>simbolo del link</strong> copia un link che riapre esattamente questa vista: dettaglio della carta, livelli attivi, carta di base e punto selezionato. Utile per condividere.",
     "tour.note.title": "Da sapere",
-    "tour.note.text": "<strong>Rosso non significa automaticamente «nessun movimento».</strong> Indica solo che qui il radar misura male, ad es. per la geometria, la vegetazione, la neve, i ghiacciai o frane veloci. Maggiori dettagli in questa finestra.",
+    "tour.note.text": "<strong>Il GMSI mostra solo quanto bene il radar può misurare qui, non se qualcosa si muove.</strong> Rosso non significa automaticamente «nessun movimento» e blu non significa «stabile»: il radar rileva solo il movimento nella direzione di vista del satellite (LOS). Maggiori dettagli in questa finestra.",
     "legend.shadow": "Nessuna misurazione possibile (ombra radar / layover)",
 
     "layer.composite": "Panoramica GMSI (miglior valore di tutte le orbite)",
@@ -691,7 +693,7 @@ const I18N = {
       "0 (hardly measurable) to 1 (very well suited) and is given for every 10×10&nbsp;metre " +
       "pixel.",
     "modal.howToRead.h": "How to read the map",
-    "modal.howToRead.green": "<strong>Blue (GMSI ≥ 0.4):</strong> good conditions – good radar measurements are likely here.",
+    "modal.howToRead.green": "<strong>Blue (GMSI ≥ 0.4):</strong> good conditions – good radar measurements are likely here. This says nothing about whether the slope is moving.",
     "modal.howToRead.yellow": "<strong>Orange (GMSI 0.2–0.4):</strong> measurements are possible, but results should be interpreted with caution.",
     "modal.howToRead.red": "<strong>Red (GMSI &lt; 0.2):</strong> poor conditions – good measurements are harder to obtain, and movements can be easily missed or difficult to interpret. Measurements are not entirely impossible, though.",
     "modal.howToRead.blocked": "<strong>Grey (no measurement possible):</strong> areas in radar shadow or with layover distortion, No track provides a GMSI value here.",
@@ -710,6 +712,7 @@ const I18N = {
     "modal.whatNot.li1": "The map is based on <strong>summer data from 2018–2021</strong> and therefore shows best-case conditions. With snow cover, reliable measurements are generally not possible regardless of the GMSI value.",
     "modal.whatNot.li2": "Areas that changed a lot specifically during 2018–2021 may show lower values on the map, even if conditions have since improved again.",
     "modal.whatNot.li3": "The map applies only to <strong>Sentinel&#8209;1 (C-band, wavelength approx. 5.4&nbsp;cm)</strong>. This band is more sensitive to vegetation and rapid ground motion than longer-wavelength radar systems; the GMSI says nothing about other satellites or viewing geometries.",
+    "modal.whatNot.li4": "The GMSI only describes <strong>measurability</strong>, not the stability of a slope. Radar also captures only the component of movement along the <strong>satellite's line of sight (LOS)</strong>. Even with blue values, i.e. solid measurements, “no movement measured” therefore does not automatically mean “no movement”: movements perpendicular to the line of sight are barely or not at all detected.",
     "modal.howMade.h": "How was the map created? (brief explanation)",
     "modal.howMade.intro":
       "The basis is radar imagery from the <strong>Sentinel&#8209;1</strong> satellite (part of the European " +
@@ -765,7 +768,7 @@ const I18N = {
     "summary.noData": "no data",
     "summary.msg.none": "No track has good values (≥ 0.4).",
     "summary.msg.one": "Only well measurable on a single track – that's more vulnerable than locations measurable on several tracks.",
-    "summary.msg.many": "Well measurable on {good} of {total} tracks – measurability is robust.",
+    "summary.msg.many": "Well measurable on {good} of {total} tracks – measurability is robust (but this says nothing about movement).",
     "summary.loading": "Loading …",
     "summary.bestTrack": "Best track: ",
     "summary.compareAllBtn": "Compare all tracks",
@@ -901,7 +904,7 @@ const I18N = {
     "tour.share.title": "Share the view",
     "tour.share.text": "The <strong>link symbol</strong> copies a link that reopens exactly this view: map section, switched-on layers, basemap and the marked point. Handy for passing on.",
     "tour.note.title": "Good to know",
-    "tour.note.text": "<strong>Red doesn't automatically mean “no movement”.</strong> It only shows that radar measures poorly here, e.g. because of geometry, vegetation, snow, glaciers or fast landslides. More on this in this dialog.",
+    "tour.note.text": "<strong>The GMSI only shows how well radar can measure here – not whether anything is moving.</strong> Red doesn't automatically mean “no movement”, and blue doesn't mean “stable”: radar only captures movement along the satellite's line of sight (LOS). More on this in this dialog.",
     "legend.shadow": "No measurement possible (radar shadow / layover)",
 
     "layer.composite": "GMSI overview (best value across all tracks)",
