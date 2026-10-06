@@ -43,7 +43,7 @@ const I18N = {
     "about.contact": "Rückmeldungen, Fragen und Fehlermeldungen bitte an",
     "about.dataH": "Datenstand",
     "about.gmsi": "<strong>GMSI</strong> (Ground Motion Sensitivity Index, Version 2): Jacquemart &amp; Manconi (2025), berechnet aus Sentinel-1-Daten (Copernicus/ESA), Sommerdaten 2018–2021.",
-    "about.citation": "Jacquemart, M., &amp; Manconi, A. (2025). TASK 5.1b – A ground motion sensitivity index (GMSI) to facilitate the interpretation of satellite-based radar measurements in alpine terrain. In A. Bast, M. Bründl, &amp; M. Phillips (Eds.), <em>WSL Berichte: Vol. 181. WSL research programme Climate Change Impacts on Alpine Mass Movements - CCAMM: project report</em> (pp. 149–153). <a href="https://doi.org/10.55419/wsl:41914" target="_blank" rel="noopener">https://doi.org/10.55419/wsl:41914</a>",
+    "about.citation": "Jacquemart, M., &amp; Manconi, A. (2025). TASK 5.1b – A ground motion sensitivity index (GMSI) to facilitate the interpretation of satellite-based radar measurements in alpine terrain. In A. Bast, M. Bründl, &amp; M. Phillips (Eds.), <em>WSL Berichte: Vol. 181. WSL research programme Climate Change Impacts on Alpine Mass Movements - CCAMM: project report</em> (pp. 149–153). <a href='https://doi.org/10.55419/wsl:41914' target='_blank' rel='noopener'>https://doi.org/10.55419/wsl:41914</a>",
     "about.record": "<strong>Rasterdaten dieser Karte:</strong> Zenodo, Record",
     "about.permafrost": "<strong>Permafrostkarte:</strong> Kenner et al. (2018), Permafrost and Ground Ice Map of Switzerland, SLF (Zenodo 1470165).",
     "about.swisstopo": "<strong>Karten:</strong> Basiskarten, Gletscherausdehnung (mit GLAMOS) und Hangneigung © swisstopo. Höhe, Neigung und Exposition am Punkt: swisstopo-Höhendienst.",
@@ -112,7 +112,7 @@ const I18N = {
     "modal.workflow.li3": "<strong>GMSI pro Track:</strong> Die Karte dieser Bahn ansehen und prüfen, ob die Blickrichtung zur erwarteten Bewegungsrichtung des Hangs passt.",
     "modal.workflow.li4": "<strong>Shadow/Layover pro Track:</strong> Bei Unklarheiten prüfen, ob der Ort für diese Bahn im Radarschatten liegt oder durch Layover verzerrt ist.",
     "modal.source":
-      "Quelle: Jacquemart, M., &amp; Manconi, A. (2025). TASK 5.1b – A ground motion sensitivity index (GMSI) to facilitate the interpretation of satellite-based radar measurements in alpine terrain. In A. Bast, M. Bründl, &amp; M. Phillips (Eds.), <em>WSL Berichte: Vol. 181. WSL research programme Climate Change Impacts on Alpine Mass Movements - CCAMM: project report</em> (pp. 149–153). <a href="https://doi.org/10.55419/wsl:41914" target="_blank" rel="noopener">https://doi.org/10.55419/wsl:41914</a><br>" +
+      "Quelle: Jacquemart, M., &amp; Manconi, A. (2025). TASK 5.1b – A ground motion sensitivity index (GMSI) to facilitate the interpretation of satellite-based radar measurements in alpine terrain. In A. Bast, M. Bründl, &amp; M. Phillips (Eds.), <em>WSL Berichte: Vol. 181. WSL research programme Climate Change Impacts on Alpine Mass Movements - CCAMM: project report</em> (pp. 149–153). <a href='https://doi.org/10.55419/wsl:41914' target='_blank' rel='noopener'>https://doi.org/10.55419/wsl:41914</a><br>" +
       "Datengrundlage: Kohärenzbilder des Satelliten " +
       "Sentinel&#8209;1 (ESA/Copernicus), Sommer 2018–2021; digitales Höhenmodell (Gelände).",
 
@@ -353,7 +353,7 @@ const I18N = {
     "about.contact": "Feedback, domande e segnalazioni di errori a",
     "about.dataH": "Stato dei dati",
     "about.gmsi": "<strong>GMSI</strong> (Ground Motion Sensitivity Index, versione 2): Jacquemart &amp; Manconi (2025), calcolato da dati Sentinel-1 (Copernicus/ESA), dati estivi 2018–2021.",
-    "about.citation": "Jacquemart, M., &amp; Manconi, A. (2025). TASK 5.1b – A ground motion sensitivity index (GMSI) to facilitate the interpretation of satellite-based radar measurements in alpine terrain. In A. Bast, M. Bründl, &amp; M. Phillips (Eds.), <em>WSL Berichte: Vol. 181. WSL research programme Climate Change Impacts on Alpine Mass Movements - CCAMM: project report</em> (pp. 149–153). <a href="https://doi.org/10.55419/wsl:41914" target="_blank" rel="noopener">https://doi.org/10.55419/wsl:41914</a>",
+    "about.citation": "Jacquemart, M., &amp; Manconi, A. (2025). TASK 5.1b – A ground motion sensitivity index (GMSI) to facilitate the interpretation of satellite-based radar measurements in alpine terrain. In A. Bast, M. Bründl, &amp; M. Phillips (Eds.), <em>WSL Berichte: Vol. 181. WSL research programme Climate Change Impacts on Alpine Mass Movements - CCAMM: project report</em> (pp. 149–153). <a href='https://doi.org/10.55419/wsl:41914' target='_blank' rel='noopener'>https://doi.org/10.55419/wsl:41914</a>",
     "about.record": "<strong>Dati raster di questa carta:</strong> Zenodo, record",
     "about.permafrost": "<strong>Carta del permafrost:</strong> Kenner et al. (2018), Permafrost and Ground Ice Map of Switzerland, SLF (Zenodo 1470165).",
     "about.swisstopo": "<strong>Carte:</strong> carte di base, estensione dei ghiacciai (con GLAMOS) e pendenza © swisstopo. Quota, pendenza ed esposizione nel punto: servizio altimetrico swisstopo.",
@@ -422,7 +422,7 @@ const I18N = {
     "modal.workflow.li3": "<strong>GMSI per orbita:</strong> consultare la carta di quell'orbita e verificare se la direzione di vista corrisponde alla direzione di movimento attesa del versante.",
     "modal.workflow.li4": "<strong>Shadow/Layover per orbita:</strong> in caso di dubbi, verificare se il luogo si trova in ombra radar o è distorto da layover per quell'orbita.",
     "modal.source":
-      "Fonte: Jacquemart, M., &amp; Manconi, A. (2025). TASK 5.1b – A ground motion sensitivity index (GMSI) to facilitate the interpretation of satellite-based radar measurements in alpine terrain. In A. Bast, M. Bründl, &amp; M. Phillips (Eds.), <em>WSL Berichte: Vol. 181. WSL research programme Climate Change Impacts on Alpine Mass Movements - CCAMM: project report</em> (pp. 149–153). <a href="https://doi.org/10.55419/wsl:41914" target="_blank" rel="noopener">https://doi.org/10.55419/wsl:41914</a><br>" +
+      "Fonte: Jacquemart, M., &amp; Manconi, A. (2025). TASK 5.1b – A ground motion sensitivity index (GMSI) to facilitate the interpretation of satellite-based radar measurements in alpine terrain. In A. Bast, M. Bründl, &amp; M. Phillips (Eds.), <em>WSL Berichte: Vol. 181. WSL research programme Climate Change Impacts on Alpine Mass Movements - CCAMM: project report</em> (pp. 149–153). <a href='https://doi.org/10.55419/wsl:41914' target='_blank' rel='noopener'>https://doi.org/10.55419/wsl:41914</a><br>" +
       "Dati di base: immagini di coerenza del satellite " +
       "Sentinel&#8209;1 (ESA/Copernicus), estate 2018–2021; modello digitale del terreno.",
 
@@ -663,7 +663,7 @@ const I18N = {
     "about.contact": "Feedback, questions and error reports to",
     "about.dataH": "Data status",
     "about.gmsi": "<strong>GMSI</strong> (Ground Motion Sensitivity Index, version 2): Jacquemart &amp; Manconi (2025), computed from Sentinel-1 data (Copernicus/ESA), summer data 2018–2021.",
-    "about.citation": "Jacquemart, M., &amp; Manconi, A. (2025). TASK 5.1b – A ground motion sensitivity index (GMSI) to facilitate the interpretation of satellite-based radar measurements in alpine terrain. In A. Bast, M. Bründl, &amp; M. Phillips (Eds.), <em>WSL Berichte: Vol. 181. WSL research programme Climate Change Impacts on Alpine Mass Movements - CCAMM: project report</em> (pp. 149–153). <a href="https://doi.org/10.55419/wsl:41914" target="_blank" rel="noopener">https://doi.org/10.55419/wsl:41914</a>",
+    "about.citation": "Jacquemart, M., &amp; Manconi, A. (2025). TASK 5.1b – A ground motion sensitivity index (GMSI) to facilitate the interpretation of satellite-based radar measurements in alpine terrain. In A. Bast, M. Bründl, &amp; M. Phillips (Eds.), <em>WSL Berichte: Vol. 181. WSL research programme Climate Change Impacts on Alpine Mass Movements - CCAMM: project report</em> (pp. 149–153). <a href='https://doi.org/10.55419/wsl:41914' target='_blank' rel='noopener'>https://doi.org/10.55419/wsl:41914</a>",
     "about.record": "<strong>Raster data of this map:</strong> Zenodo, record",
     "about.permafrost": "<strong>Permafrost map:</strong> Kenner et al. (2018), Permafrost and Ground Ice Map of Switzerland, SLF (Zenodo 1470165).",
     "about.swisstopo": "<strong>Maps:</strong> basemaps, glacier extent (with GLAMOS) and slope angle © swisstopo. Height, slope and aspect at a point: swisstopo height service.",
@@ -731,7 +731,7 @@ const I18N = {
     "modal.workflow.li3": "<strong>GMSI per track:</strong> look at that track's map and check whether its viewing direction matches the slope's expected direction of movement.",
     "modal.workflow.li4": "<strong>Shadow/Layover per track:</strong> if anything is unclear, check whether the location is in radar shadow or distorted by layover for that track.",
     "modal.source":
-      "Source: Jacquemart, M., &amp; Manconi, A. (2025). TASK 5.1b – A ground motion sensitivity index (GMSI) to facilitate the interpretation of satellite-based radar measurements in alpine terrain. In A. Bast, M. Bründl, &amp; M. Phillips (Eds.), <em>WSL Berichte: Vol. 181. WSL research programme Climate Change Impacts on Alpine Mass Movements - CCAMM: project report</em> (pp. 149–153). <a href="https://doi.org/10.55419/wsl:41914" target="_blank" rel="noopener">https://doi.org/10.55419/wsl:41914</a><br>" +
+      "Source: Jacquemart, M., &amp; Manconi, A. (2025). TASK 5.1b – A ground motion sensitivity index (GMSI) to facilitate the interpretation of satellite-based radar measurements in alpine terrain. In A. Bast, M. Bründl, &amp; M. Phillips (Eds.), <em>WSL Berichte: Vol. 181. WSL research programme Climate Change Impacts on Alpine Mass Movements - CCAMM: project report</em> (pp. 149–153). <a href='https://doi.org/10.55419/wsl:41914' target='_blank' rel='noopener'>https://doi.org/10.55419/wsl:41914</a><br>" +
       "Underlying data: coherence images from the " +
       "Sentinel&#8209;1 satellite (ESA/Copernicus), summer 2018–2021; digital terrain model.",
 
