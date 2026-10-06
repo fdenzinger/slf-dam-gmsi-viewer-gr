@@ -1128,7 +1128,7 @@ const GAZETTEER_TYPES = [
   { re: /^(Strassenpass|Pass)\s+/, kind: "pass", rank: 4, zoom: 7 },
   { re: /^(Stausee|See)\s+/, kind: "lake", rank: 5, zoom: 7 },
   { re: /^Gletscher\s+/, kind: "glacier", rank: 6, zoom: 7 },
-  { re: /^Ort\s+/, kind: "place", rank: 7, zoom: 9 },
+  { re: /^Ort\s+/, kind: "place", rank: 7, zoom: 8 },
   { re: /^Grat\s+/, kind: "ridge", rank: 8, zoom: 7 },
   { re: /^Tal\s+/, kind: "valley", rank: 8, zoom: 6 },
   { re: /^(Flurname swisstopo|Gebiet)\s+/, kind: "name", rank: 9, zoom: 8 },
@@ -1142,7 +1142,7 @@ const SEARCH_CANTON = "GR"; // hits in the canton this viewer covers come first 
 function parseSearchHit(r) {
   const a = r.attrs;
   const label = stripTags(a.label);
-  const base = { lat: a.lat, lon: a.lon, label, zoom: 12, name: label, meta: "", rank: 9 };
+  const base = { lat: a.lat, lon: a.lon, label, zoom: 10, name: label, meta: "", rank: 9 };
   if (a.origin === "gazetteer") {
     const type = GAZETTEER_TYPES.find((tp) => tp.re.test(label));
     if (!type) return null;
