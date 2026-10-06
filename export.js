@@ -177,24 +177,33 @@ const LOGO_LINKS = [
 // footer: notes and sources on the left, the DAM and SLF logos bottom right (clickable in the PDF).
 // Returns the clickable areas in canvas pixels.
 async function drawFooter(ctx, noteText) {
-  const y0 = EXPORT_H - 170, links = [];
-  ctx.fillStyle = "#e2e8f0"; ctx.fillRect(60, y0, EXPORT_W - 120, 2);
   const imgs = await Promise.all(LOGO_LINKS.map((l) => loadImage(l.file)));
-  const logoH = 96, logoY = y0 + 28;
+  const logoH = 96, links = [];
+  const logoW = (img) => Math.round((img.width / img.height) * logoH);
   let right = EXPORT_W - 60;
+  for (let i = imgs.length - 1; i >= 0; i--) if (imgs[i]) right -= logoW(imgs[i]) + 26;
+  const textW = Math.max(520, right - 60 - 20);
+  ctx.font = `400 17px ${EXPORT_FONT}`;
+  const noteLines = wrapLines(ctx, noteText, textW);
+  const creditLines = wrapLines(ctx, "GMSI © Jacquemart & Manconi (2025) · Copernicus Sentinel-1 (ESA) · " + t("export.maps"), textW);
+  // grow the footer when a long note needs more lines than the default 170 px
+  const need = 34 + 23 * (noteLines.length + creditLines.length) + 4 + 8 + 16;
+  const y0 = EXPORT_H - Math.max(170, need);
+  ctx.fillStyle = "#e2e8f0"; ctx.fillRect(60, y0, EXPORT_W - 120, 2);
+  const logoY = y0 + 28;
+  right = EXPORT_W - 60;
   for (let i = imgs.length - 1; i >= 0; i--) { // right to left: SLF, then DAM
     const img = imgs[i];
     if (!img) continue;
-    const w = Math.round((img.width / img.height) * logoH);
+    const w = logoW(img);
     ctx.drawImage(img, right - w, logoY, w, logoH);
     links.push({ x: right - w, y: logoY, w, h: logoH, url: LOGO_LINKS[i].url });
     right -= w + 26;
   }
-  const textW = Math.max(520, right - 60 - 20);
   ctx.fillStyle = "#64748b"; ctx.font = `400 17px ${EXPORT_FONT}`;
   let y = y0 + 34;
-  for (const l of wrapLines(ctx, noteText, textW)) { ctx.fillText(l, 60, y); y += 23; }
-  for (const l of wrapLines(ctx, "GMSI © Jacquemart & Manconi (2025) · Copernicus Sentinel-1 (ESA) · " + t("export.maps"), textW)) { ctx.fillText(l, 60, y + 4); y += 23; }
+  for (const l of noteLines) { ctx.fillText(l, 60, y); y += 23; }
+  for (const l of creditLines) { ctx.fillText(l, 60, y + 4); y += 23; }
   y += 8;
   ctx.fillStyle = "#94a3b8"; ctx.font = `400 15px ${EXPORT_FONT}`;
   const link = location.href.length > 70 ? location.href.slice(0, 67) + "…" : location.href;
