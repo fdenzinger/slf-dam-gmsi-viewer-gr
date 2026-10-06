@@ -53,7 +53,7 @@ const I18N = {
     "feedback.subject": "Rückmeldung",
     "feedback.body": "Bitte hier schreiben:",
     "feedback.view": "Ansicht",
-    "intro.text": "Der <strong>Ground Motion Sensitivity Index (GMSI)</strong> zeigt, wie gut sich <strong>Bodenbewegungen</strong> in Graubünden mit Satellitenradar (Sentinel‑1) überwachen lassen: von 0 (ungeeignet) bis 1 (sehr gut). Er zeigt nicht, ob sich der Boden bewegt, sondern wie zuverlässig sich Bewegungen messen lassen.",
+    "intro.text": "Der <strong>Ground Motion Sensitivity Index (GMSI)</strong> zeigt, wie gut sich <strong>Bodenbewegungen</strong> in Graubünden mit Satellitenradar (Sentinel‑1) überwachen lassen: von 0 (kaum messbar) bis 1 (sehr gut). Er zeigt nicht, ob sich der Boden bewegt, sondern wie zuverlässig sich Bewegungen messen lassen.",
     "intro.collapsed": "Was ist der GMSI?",
     "intro.more": "Mehr erfahren",
     "intro.tutorial": "Tutorial starten",
@@ -68,7 +68,7 @@ const I18N = {
       "Der <strong>GMSI (Ground Motion Sensitivity Index)</strong> zeigt, wie gut sich ein Ort im " +
       "Kanton Graubünden mit Satellitenradar (Sentinel&#8209;1) auf Bodenbewegungen überwachen lässt – " +
       "zum Beispiel für Rutschungen, Sackungen oder andere Hangbewegungen. Der Wert reicht von " +
-      "0 (ungeeignet) bis 1 (sehr gut geeignet) und liegt für jeden 10×10&nbsp;Meter grossen " +
+      "0 (kaum messbar) bis 1 (sehr gut geeignet) und liegt für jeden 10×10&nbsp;Meter grossen " +
       "Bildpunkt vor.",
     "modal.howToRead.h": "Wie ist die Karte zu lesen?",
     "modal.howToRead.green": "<strong>Blau (GMSI ≥ 0.4):</strong> gute Bedingungen – hier sind gute Radarmessungen wahrscheinlich.",
@@ -360,7 +360,7 @@ const I18N = {
     "feedback.subject": "Feedback",
     "feedback.body": "Scrivi qui:",
     "feedback.view": "Vista",
-    "intro.text": "Il <strong>Ground Motion Sensitivity Index (GMSI)</strong> indica quanto bene i <strong>movimenti del terreno</strong> nei Grigioni possano essere monitorati con il radar satellitare (Sentinel‑1): da 0 (non adatto) a 1 (molto buono). Non mostra se il terreno si muove, ma con quale affidabilità i movimenti possono essere misurati.",
+    "intro.text": "Il <strong>Ground Motion Sensitivity Index (GMSI)</strong> indica quanto bene i <strong>movimenti del terreno</strong> nei Grigioni possano essere monitorati con il radar satellitare (Sentinel‑1): da 0 (quasi non misurabile) a 1 (molto buono). Non mostra se il terreno si muove, ma con quale affidabilità i movimenti possono essere misurati.",
     "intro.collapsed": "Che cos'è il GMSI?",
     "intro.more": "Maggiori informazioni",
     "intro.tutorial": "Avvia il tutorial",
@@ -375,7 +375,7 @@ const I18N = {
       "Il <strong>GMSI (Ground Motion Sensitivity Index)</strong> indica quanto bene un luogo nel " +
       "Cantone dei Grigioni può essere monitorato con il radar satellitare (Sentinel&#8209;1) per " +
       "individuare movimenti del terreno – per esempio frane, cedimenti o altri movimenti di versante. " +
-      "Il valore va da 0 (non adatto) a 1 (molto adatto) ed è disponibile per ogni pixel di " +
+      "Il valore va da 0 (quasi non misurabile) a 1 (molto adatto) ed è disponibile per ogni pixel di " +
       "10×10&nbsp;metri.",
     "modal.howToRead.h": "Come si legge la carta?",
     "modal.howToRead.green": "<strong>Blu (GMSI ≥ 0,4):</strong> condizioni buone – qui sono probabili buone misurazioni radar.",
@@ -667,7 +667,7 @@ const I18N = {
     "feedback.subject": "Feedback",
     "feedback.body": "Please write here:",
     "feedback.view": "View",
-    "intro.text": "The <strong>Ground Motion Sensitivity Index (GMSI)</strong> shows how well <strong>ground movement</strong> in Graubünden can be monitored with satellite radar (Sentinel‑1): from 0 (unsuitable) to 1 (very good). It does not show whether the ground moves, but how reliably movements can be measured.",
+    "intro.text": "The <strong>Ground Motion Sensitivity Index (GMSI)</strong> shows how well <strong>ground movement</strong> in Graubünden can be monitored with satellite radar (Sentinel‑1): from 0 (hardly measurable) to 1 (very good). It does not show whether the ground moves, but how reliably movements can be measured.",
     "intro.collapsed": "What is the GMSI?",
     "intro.more": "Learn more",
     "intro.tutorial": "Start tutorial",
@@ -682,7 +682,7 @@ const I18N = {
       "The <strong>GMSI (Ground Motion Sensitivity Index)</strong> shows how well a location in " +
       "the canton of Graubünden can be monitored for ground motion using satellite radar (Sentinel&#8209;1) – " +
       "for example for landslides, subsidence or other slope movements. The value ranges from " +
-      "0 (unsuitable) to 1 (very well suited) and is given for every 10×10&nbsp;metre " +
+      "0 (hardly measurable) to 1 (very well suited) and is given for every 10×10&nbsp;metre " +
       "pixel.",
     "modal.howToRead.h": "How to read the map",
     "modal.howToRead.green": "<strong>Blue (GMSI ≥ 0.4):</strong> good conditions – good radar measurements are likely here.",
