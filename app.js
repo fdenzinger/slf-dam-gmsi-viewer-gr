@@ -1013,7 +1013,7 @@ function buildSidebar() {
 function swatchColorFor(manifest) {
   if (manifest.kind === "orbit") return "linear-gradient(90deg,#3C7AA9,#5ACDEE,#4FAE62,#F36976,#CEB848)";
   if (manifest.kind === "gmsi") return "#5B9BCB";
-  if (manifest.kind === "shadow") return "#5A5A5A";
+  if (manifest.kind === "shadow") return "#3A3A3A";
   if (manifest.kind === "glacier") return "linear-gradient(90deg,#BEFFE8,#CD8966)";
   if (manifest.kind === "slope") return "linear-gradient(90deg,#F2E50A,#F46F24,#DE055B,#C889BB,#4B4B4B)";
   if (manifest.kind === "permafrost") return "linear-gradient(90deg,#7A8DB8,#7BAEFF,#7DDFFF,#B6EEFF,#FFFF80)";

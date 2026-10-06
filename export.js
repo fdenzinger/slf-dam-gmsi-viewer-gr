@@ -5,8 +5,8 @@
 
 const EXPORT_W = 1240, EXPORT_H = 1754; // A4 at 150 dpi
 const EXPORT_FONT = '-apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif';
-const VERDICT_COLORS = { good: "#2C7BB6", mid: "#d98a1f", bad: "#D7191C", blocked: "#5A5A5A", none: "#777777" };
-const CLASS_RGBA = { good: [91, 155, 203, 205], mid: [253, 174, 97, 205], bad: [215, 25, 28, 205], blocked: [90, 90, 90, 205] };
+const VERDICT_COLORS = { good: "#2C7BB6", mid: "#d98a1f", bad: "#D7191C", blocked: "#3A3A3A", none: "#777777" };
+const CLASS_RGBA = { good: [91, 155, 203, 205], mid: [253, 174, 97, 205], bad: [215, 25, 28, 205], blocked: [58, 58, 58, 205] };
 
 // ---------------------------------------------------------------- small helpers
 
