@@ -1124,14 +1124,14 @@ function stripTags(html) {
 // What a hit is, from swisstopo's gazetteer label ("Alpiner Gipfel Piz Bernina (GR) - Pontresina").
 // Only terrain names people look for are kept; buildings, cableways, camp sites etc. are dropped.
 const GAZETTEER_TYPES = [
-  { re: /^(Alpiner Gipfel|Hauptgipfel|Nebengipfel|Gipfel)\s+/, kind: "peak", rank: 3, zoom: 6 },
-  { re: /^(Strassenpass|Pass)\s+/, kind: "pass", rank: 4, zoom: 6 },
-  { re: /^(Stausee|See)\s+/, kind: "lake", rank: 5, zoom: 6 },
-  { re: /^Gletscher\s+/, kind: "glacier", rank: 6, zoom: 6 },
+  { re: /^(Alpiner Gipfel|Hauptgipfel|Nebengipfel|Gipfel)\s+/, kind: "peak", rank: 3, zoom: 7 },
+  { re: /^(Strassenpass|Pass)\s+/, kind: "pass", rank: 4, zoom: 7 },
+  { re: /^(Stausee|See)\s+/, kind: "lake", rank: 5, zoom: 7 },
+  { re: /^Gletscher\s+/, kind: "glacier", rank: 6, zoom: 7 },
   { re: /^Ort\s+/, kind: "place", rank: 7, zoom: 9 },
-  { re: /^Grat\s+/, kind: "ridge", rank: 8, zoom: 6 },
-  { re: /^Tal\s+/, kind: "valley", rank: 8, zoom: 5 },
-  { re: /^(Flurname swisstopo|Gebiet)\s+/, kind: "name", rank: 9, zoom: 7 },
+  { re: /^Grat\s+/, kind: "ridge", rank: 8, zoom: 7 },
+  { re: /^Tal\s+/, kind: "valley", rank: 8, zoom: 6 },
+  { re: /^(Flurname swisstopo|Gebiet)\s+/, kind: "name", rank: 9, zoom: 8 },
 ];
 const SEARCH_MAX_RESULTS = 8;
 const SEARCH_MAX_ADDRESSES = 2;
