@@ -43,6 +43,7 @@ const I18N = {
     "about.contact": "Rückmeldungen, Fragen und Fehlermeldungen bitte an",
     "about.dataH": "Datenstand",
     "about.gmsi": "<strong>GMSI</strong> (Ground Motion Sensitivity Index, Version 2): Jacquemart &amp; Manconi (2025), berechnet aus Sentinel-1-Daten (Copernicus/ESA), Sommerdaten 2018–2021.",
+    "about.citation": "Jacquemart, M., &amp; Manconi, A. (2025). TASK 5.1b – A ground motion sensitivity index (GMSI) to facilitate the interpretation of satellite-based radar measurements in alpine terrain. In A. Bast, M. Bründl, &amp; M. Phillips (Eds.), <em>WSL Berichte: Vol. 181. WSL research programme Climate Change Impacts on Alpine Mass Movements - CCAMM: project report</em> (pp. 149–153). <a href="https://doi.org/10.55419/wsl:41914" target="_blank" rel="noopener">https://doi.org/10.55419/wsl:41914</a>",
     "about.record": "<strong>Rasterdaten dieser Karte:</strong> Zenodo, Record",
     "about.permafrost": "<strong>Permafrostkarte:</strong> Kenner et al. (2018), Permafrost and Ground Ice Map of Switzerland, SLF (Zenodo 1470165).",
     "about.swisstopo": "<strong>Karten:</strong> Basiskarten, Gletscherausdehnung (mit GLAMOS) und Hangneigung © swisstopo. Höhe, Neigung und Exposition am Punkt: swisstopo-Höhendienst.",
@@ -70,11 +71,11 @@ const I18N = {
       "0 (ungeeignet) bis 1 (sehr gut geeignet) und liegt für jeden 10×10&nbsp;Meter grossen " +
       "Bildpunkt vor.",
     "modal.howToRead.h": "Wie ist die Karte zu lesen?",
-    "modal.howToRead.green": "<strong>Blau (GMSI ≥ 0.4):</strong> sehr gute Bedingungen – hier sind gute Radarmessungen wahrscheinlich.",
+    "modal.howToRead.green": "<strong>Blau (GMSI ≥ 0.4):</strong> gute Bedingungen – hier sind gute Radarmessungen wahrscheinlich.",
     "modal.howToRead.yellow": "<strong>Orange (GMSI 0.2–0.4):</strong> Messungen sind möglich, Ergebnisse sollten aber mit Vorsicht interpretiert werden.",
     "modal.howToRead.red": "<strong>Rot (GMSI &lt; 0.2):</strong> schlechte Bedingungen – gute Messungen sind schwieriger zu erhalten, und Bewegungen können leicht übersehen werden oder sind schwer zu interpretieren. Ganz unmöglich sind Messungen aber nicht.",
-    "modal.howToRead.blocked": "<strong>Grau (keine Messung möglich):</strong> Gebiete im Radarschatten oder mit Layover-Verzerrung sowie Gebiete, in denen die Radarbilder schon nach 6&nbsp;Tagen nicht mehr zuverlässig vergleichbar sind. Hier liefert kein Track einen GMSI-Wert.",
-    "modal.howToRead.none": "<strong>Ohne Farbe:</strong> keine Daten – Gebiete ausserhalb von Graubünden sowie Seen.",
+    "modal.howToRead.blocked": "<strong>Grau (keine Messung möglich):</strong> Gebiete im Radarschatten oder mit Layover-Verzerrung. Hier liefert kein Track einen GMSI-Wert.",
+    "modal.howToRead.none": "<strong>Ohne Farbe:</strong> keine Daten – Gebiete ausserhalb von Graubünden sowie Flächen, die nie verlässliche Messungen liefern (die Radarbilder sind schon nach 6&nbsp;Tagen nicht mehr vergleichbar, typisch für Gletscher, Gewässer und Wald).",
     "modal.redWarning.h": "Wichtig: Rot heisst nicht automatisch „keine Bewegung“",
     "modal.redWarning.intro": "Ein tiefer GMSI-Wert kann ganz unterschiedliche Ursachen haben – und die Karte allein zeigt nicht, welche davon zutrifft:",
     "modal.redWarning.li1": "Die Geometrie ist ungünstig, z.&nbsp;B. ein Steilhang, den der Satellit aus seiner Blickrichtung nicht gut einsehen kann.",
@@ -89,6 +90,7 @@ const I18N = {
     "modal.whatNot.h": "Was die Karte nicht zeigt",
     "modal.whatNot.li1": "Die Karte beruht auf <strong>Sommerdaten aus den Jahren 2018–2021</strong> und zeigt damit Bestfall-Bedingungen. Bei Schneebedeckung sind zuverlässige Messungen unabhängig vom GMSI-Wert in der Regel nicht möglich.",
     "modal.whatNot.li2": "Gebiete, die sich genau während 2018–2021 stark verändert haben, können in der Karte tiefere Werte zeigen, auch wenn sich die Bedingungen seither wieder verbessert haben.",
+    "modal.whatNot.li3": "Die Karte gilt nur für <strong>Sentinel&#8209;1 (C-Band, Wellenlänge ca. 5.4&nbsp;cm)</strong>. Dieses Band ist empfindlicher gegenüber Vegetation und schneller Bodenbewegung als langwelligere Radarsysteme; für andere Satelliten oder Blickgeometrien sagt der GMSI nichts aus.",
     "modal.howMade.h": "Wie wurde die Karte erstellt? (kurz erklärt)",
     "modal.howMade.intro":
       "Grundlage sind Radaraufnahmen des Satelliten <strong>Sentinel&#8209;1</strong> (Teil des europäischen " +
@@ -97,7 +99,7 @@ const I18N = {
       "pro Bildpunkt:",
     "modal.howMade.li1": "<strong>Datenzuverlässigkeit:</strong> Wie ähnlich sieht die Erdoberfläche auf Radarbildern über die Zeit hinweg aus? Verändert sie sich schnell (z.&nbsp;B. durch Vegetation, Schnee oder Bodenbewegung), nimmt diese Ähnlichkeit rasch ab.",
     "modal.howMade.li2": "<strong>Sichtbarkeit:</strong> Kann der Satellit den Ort überhaupt „sehen“, oder liegt er im Radarschatten bzw. wird durch steiles Gelände verzerrt (Layover)?",
-    "modal.howMade.li3": "<strong>Messempfindlichkeit:</strong> Radar misst Bewegung nur in Blickrichtung des Satelliten. Ein Hang, der sich seitlich zum Satelliten bewegt, ist schwerer zu erfassen als einer, der sich direkt auf ihn zu oder von ihm weg bewegt.",
+    "modal.howMade.li3": "<strong>Messempfindlichkeit:</strong> Radar misst Bewegung nur in Blickrichtung des Satelliten. Ein Hang, der sich seitlich zum Satelliten bewegt, ist schwerer zu erfassen als einer, der sich direkt auf ihn zu oder von ihm weg bewegt. Dabei wird angenommen, dass sich der Hang entlang der Falllinie bewegt (vereinfachende, aber übliche Annahme).",
     "modal.howMade.outro":
       "Da mehrere Satelliten-Bahnen (Tracks) die Schweiz aus unterschiedlichen Richtungen " +
       "überfliegen, wird zusätzlich für jeden Bildpunkt festgehalten, welche Bahn dort die besten " +
@@ -110,7 +112,8 @@ const I18N = {
     "modal.workflow.li3": "<strong>GMSI pro Track:</strong> Die Karte dieser Bahn ansehen und prüfen, ob die Blickrichtung zur erwarteten Bewegungsrichtung des Hangs passt.",
     "modal.workflow.li4": "<strong>Shadow/Layover pro Track:</strong> Bei Unklarheiten prüfen, ob der Ort für diese Bahn im Radarschatten liegt oder durch Layover verzerrt ist.",
     "modal.source":
-      "Quelle: Jacquemart &amp; Manconi (2025). Datengrundlage: Kohärenzbilder des Satelliten " +
+      "Quelle: Jacquemart, M., &amp; Manconi, A. (2025). TASK 5.1b – A ground motion sensitivity index (GMSI) to facilitate the interpretation of satellite-based radar measurements in alpine terrain. In A. Bast, M. Bründl, &amp; M. Phillips (Eds.), <em>WSL Berichte: Vol. 181. WSL research programme Climate Change Impacts on Alpine Mass Movements - CCAMM: project report</em> (pp. 149–153). <a href="https://doi.org/10.55419/wsl:41914" target="_blank" rel="noopener">https://doi.org/10.55419/wsl:41914</a><br>" +
+      "Datengrundlage: Kohärenzbilder des Satelliten " +
       "Sentinel&#8209;1 (ESA/Copernicus), Sommer 2018–2021; digitales Höhenmodell (Gelände).",
 
     "basemap.switch": "Hintergrundkarte wechseln",
@@ -178,7 +181,7 @@ const I18N = {
     "legend.gmsiTitle": "GMSI",
     "legend.trackTitle": "Track",
     "legend.shadowTitle": "Shadow/Layover",
-    "legend.gmsi.green": "GMSI ≥ 0.4 – sehr gute Bedingungen",
+    "legend.gmsi.green": "GMSI ≥ 0.4 – gute Bedingungen",
     "legend.gmsi.yellow": "GMSI 0.2 – 0.4 – Messungen möglich, aber mit Vorsicht",
     "legend.gmsi.red": "GMSI < 0.2 – schlechte Bedingungen",
     "legend.gmsi.blocked": "Keine Messung möglich (Layover/Shadow)",
@@ -197,13 +200,13 @@ const I18N = {
     "area.computing": "Wird berechnet …",
     "area.error": "Die Auswertung ist fehlgeschlagen. Bitte erneut versuchen.",
     "area.size": "Fläche: {area}",
-    "area.class.good": "GMSI ≥ 0.4 – sehr gut",
+    "area.class.good": "GMSI ≥ 0.4 – gut",
     "area.class.mid": "GMSI 0.2–0.4 – mit Vorsicht",
     "area.class.bad": "GMSI < 0.2 – schlecht",
     "area.class.blocked": "Keine Messung möglich (Layover/Shadow)",
     "area.class.nodata": "Keine Daten (ausserhalb, See)",
-    "area.sum.good": "Auf {good} % der Fläche sind die Bedingungen sehr gut. Die Fläche ist insgesamt gut für Radarmessungen geeignet.",
-    "area.sum.mixed": "Nur auf {good} % der Fläche sind die Bedingungen sehr gut, auf {usable} % sind Messungen möglich. Die Eignung ist gemischt.",
+    "area.sum.good": "Auf {good} % der Fläche sind die Bedingungen gut. Die Fläche ist insgesamt gut für Radarmessungen geeignet.",
+    "area.sum.mixed": "Nur auf {good} % der Fläche sind die Bedingungen gut, auf {usable} % sind Messungen möglich. Die Eignung ist gemischt.",
     "area.sum.poor": "Auf {poor} % der Fläche sind Messungen schlecht oder nicht möglich. Radarmessungen sind hier nur eingeschränkt geeignet.",
     "area.sum.none": "In dieser Fläche liegen keine auswertbaren Werte vor.",
     "area.bestTracks": "Bester Track (Anteil der auswertbaren Fläche)",
@@ -245,7 +248,7 @@ const I18N = {
     "tour.layers.title": "Ebenen (Layer)",
     "tour.layers.text": "Eine Ebene ist eine Kartenschicht, die über der Basiskarte liegt. Hier schaltest du Ebenen an und aus. Jede Zeile ist eine Ebene mit Kontrollkästchen und Farbfeld. Die Ebenen sind in Gruppen geordnet (1, 2 …).",
     "tour.overview.title": "GMSI Übersicht",
-    "tour.overview.text": "Das ist die Hauptkarte. Sie <strong>kombiniert alle Satellitenbahnen (Tracks)</strong>: An jeder Stelle zeigt sie den <strong>besten GMSI-Wert</strong>, den irgendein Track dort erreicht. Die Farben: <strong>Blau</strong> = sehr gute Bedingungen (GMSI ≥ 0.4), <strong>Orange</strong> = Messungen mit Vorsicht (0.2–0.4), <strong>Rot</strong> = schlechte Bedingungen (&lt; 0.2), <strong>Grau</strong> = in keinem Track eine Messung möglich (Layover/Shadow).",
+    "tour.overview.text": "Das ist die Hauptkarte. Sie <strong>kombiniert alle Satellitenbahnen (Tracks)</strong>: An jeder Stelle zeigt sie den <strong>besten GMSI-Wert</strong>, den irgendein Track dort erreicht. Die Farben: <strong>Blau</strong> = gute Bedingungen (GMSI ≥ 0.4), <strong>Orange</strong> = Messungen mit Vorsicht (0.2–0.4), <strong>Rot</strong> = schlechte Bedingungen (&lt; 0.2), <strong>Grau</strong> = in keinem Track eine Messung möglich (Layover/Shadow).",
     "tour.toggle.title": "Ebene an- und ausschalten",
     "tour.toggle.text": "Mit dem <strong>Schalter</strong> blendest du die Ebene ein oder aus. Darunter stellt der <strong>Deckkraft-Schieber</strong> ein, wie stark die Ebene die Basiskarte überdeckt (100 % = voll deckend, kleiner = die Basiskarte scheint stärker durch). Der Schieber erscheint nur bei eingeschalteten Ebenen.",
     "tour.modes.title": "Modus wechseln",
@@ -255,7 +258,7 @@ const I18N = {
     "tour.best.title": "Bester Track pro Pixel",
     "tour.best.text": "Diese Ebene zeigt, <strong>welche Satellitenbahn (Track)</strong> an jeder Stelle den besten GMSI-Wert liefert. Jeder Track hat eine eigene Farbe, die du in der Legende findest. Das hilft bei der Wahl des Tracks für einen Hang.",
     "tour.legend.title": "Legende",
-    "tour.legend.text": "Die Legende erklärt die Farben der eingeschalteten Ebenen: <strong>Blau</strong> = sehr gut, <strong>Orange</strong> = mit Vorsicht, <strong>Rot</strong> = schlecht, <strong>Grau</strong> = keine Messung möglich (Layover/Shadow). Sie passt sich an, wenn du Ebenen ein- oder ausschaltest.",
+    "tour.legend.text": "Die Legende erklärt die Farben der eingeschalteten Ebenen: <strong>Blau</strong> = gut, <strong>Orange</strong> = mit Vorsicht, <strong>Rot</strong> = schlecht, <strong>Grau</strong> = keine Messung möglich (Layover/Shadow). Sie passt sich an, wenn du Ebenen ein- oder ausschaltest.",
     "tour.expert.title": "Erweitert-Modus",
     "tour.expert.text": "<strong>Erweitert</strong> zeigt zusätzlich die Gruppen 3 und 4 mit Ebenen für einzelne Tracks. Jetzt kannst du <strong>mehrere Ebenen gleichzeitig</strong> einschalten, z. B. einen Track zusammen mit seinen Shadow-Flächen.",
     "tour.tracks.title": "GMSI pro Track",
@@ -350,6 +353,7 @@ const I18N = {
     "about.contact": "Feedback, domande e segnalazioni di errori a",
     "about.dataH": "Stato dei dati",
     "about.gmsi": "<strong>GMSI</strong> (Ground Motion Sensitivity Index, versione 2): Jacquemart &amp; Manconi (2025), calcolato da dati Sentinel-1 (Copernicus/ESA), dati estivi 2018–2021.",
+    "about.citation": "Jacquemart, M., &amp; Manconi, A. (2025). TASK 5.1b – A ground motion sensitivity index (GMSI) to facilitate the interpretation of satellite-based radar measurements in alpine terrain. In A. Bast, M. Bründl, &amp; M. Phillips (Eds.), <em>WSL Berichte: Vol. 181. WSL research programme Climate Change Impacts on Alpine Mass Movements - CCAMM: project report</em> (pp. 149–153). <a href="https://doi.org/10.55419/wsl:41914" target="_blank" rel="noopener">https://doi.org/10.55419/wsl:41914</a>",
     "about.record": "<strong>Dati raster di questa carta:</strong> Zenodo, record",
     "about.permafrost": "<strong>Carta del permafrost:</strong> Kenner et al. (2018), Permafrost and Ground Ice Map of Switzerland, SLF (Zenodo 1470165).",
     "about.swisstopo": "<strong>Carte:</strong> carte di base, estensione dei ghiacciai (con GLAMOS) e pendenza © swisstopo. Quota, pendenza ed esposizione nel punto: servizio altimetrico swisstopo.",
@@ -377,11 +381,11 @@ const I18N = {
       "Il valore va da 0 (non adatto) a 1 (molto adatto) ed è disponibile per ogni pixel di " +
       "10×10&nbsp;metri.",
     "modal.howToRead.h": "Come si legge la carta?",
-    "modal.howToRead.green": "<strong>Blu (GMSI ≥ 0,4):</strong> condizioni molto buone – qui sono probabili buone misurazioni radar.",
+    "modal.howToRead.green": "<strong>Blu (GMSI ≥ 0,4):</strong> condizioni buone – qui sono probabili buone misurazioni radar.",
     "modal.howToRead.yellow": "<strong>Arancione (GMSI 0,2–0,4):</strong> le misurazioni sono possibili, ma i risultati vanno interpretati con cautela.",
     "modal.howToRead.red": "<strong>Rosso (GMSI &lt; 0,2):</strong> condizioni sfavorevoli – è più difficile ottenere buone misurazioni, e i movimenti possono essere facilmente trascurati o difficili da interpretare. Le misurazioni non sono però del tutto impossibili.",
-    "modal.howToRead.blocked": "<strong>Grigio (nessuna misurazione possibile):</strong> zone in ombra radar o con distorsione da layover, nonché zone in cui le immagini radar non sono più confrontabili in modo affidabile già dopo 6&nbsp;giorni. Qui nessun track fornisce un valore GMSI.",
-    "modal.howToRead.none": "<strong>Senza colore:</strong> nessun dato – zone fuori dai Grigioni e laghi.",
+    "modal.howToRead.blocked": "<strong>Grigio (nessuna misurazione possibile):</strong> zone in ombra radar o con distorsione da layover, Qui nessun track fornisce un valore GMSI.",
+    "modal.howToRead.none": "<strong>Senza colore:</strong> nessun dato – zone fuori dai Grigioni e superfici che non forniscono mai misurazioni affidabili (le immagini radar non sono più confrontabili già dopo 6&nbsp;giorni, tipico di ghiacciai, specchi d'acqua e bosco).",
     "modal.redWarning.h": "Importante: rosso non significa automaticamente «nessun movimento»",
     "modal.redWarning.intro": "Un valore GMSI basso può avere cause molto diverse – e la carta da sola non mostra quale si applichi:",
     "modal.redWarning.li1": "La geometria è sfavorevole, p.&nbsp;es. un pendio ripido che il satellite non riesce a osservare bene dalla sua angolazione.",
@@ -396,6 +400,7 @@ const I18N = {
     "modal.whatNot.h": "Cosa non mostra la carta",
     "modal.whatNot.li1": "La carta si basa su <strong>dati estivi degli anni 2018–2021</strong> e mostra quindi condizioni ottimali. In presenza di copertura nevosa, misurazioni affidabili non sono generalmente possibili, indipendentemente dal valore GMSI.",
     "modal.whatNot.li2": "Le zone che sono cambiate molto proprio durante il periodo 2018–2021 possono mostrare valori più bassi sulla carta, anche se le condizioni sono migliorate nel frattempo.",
+    "modal.whatNot.li3": "La carta vale solo per <strong>Sentinel&#8209;1 (banda C, lunghezza d'onda ca. 5,4&nbsp;cm)</strong>. Questa banda è più sensibile a vegetazione e movimenti rapidi del terreno rispetto a sistemi radar a lunghezza d'onda maggiore; per altri satelliti o geometrie di vista il GMSI non dice nulla.",
     "modal.howMade.h": "Come è stata creata la carta? (breve spiegazione)",
     "modal.howMade.intro":
       "La base sono immagini radar del satellite <strong>Sentinel&#8209;1</strong> (parte del programma " +
@@ -404,7 +409,7 @@ const I18N = {
       "per ogni pixel:",
     "modal.howMade.li1": "<strong>Affidabilità dei dati:</strong> quanto si assomiglia la superficie del terreno nelle immagini radar nel tempo? Se cambia rapidamente (p.&nbsp;es. a causa di vegetazione, neve o movimenti del terreno), questa somiglianza diminuisce in fretta.",
     "modal.howMade.li2": "<strong>Visibilità:</strong> il satellite riesce a «vedere» il luogo, oppure questo si trova in ombra radar o è distorto da un terreno ripido (layover)?",
-    "modal.howMade.li3": "<strong>Sensibilità di misura:</strong> il radar misura il movimento solo nella direzione di vista del satellite. Un pendio che si muove lateralmente rispetto al satellite è più difficile da rilevare di uno che si muove direttamente verso di esso o in allontanamento.",
+    "modal.howMade.li3": "<strong>Sensibilità di misura:</strong> il radar misura il movimento solo nella direzione di vista del satellite. Un pendio che si muove lateralmente rispetto al satellite è più difficile da rilevare di uno che si muove direttamente verso di esso o in allontanamento. Si assume che il versante si muova lungo la linea di massima pendenza (ipotesi semplificativa, ma usuale).",
     "modal.howMade.outro":
       "Poiché più orbite satellitari (track) sorvolano la Svizzera da direzioni diverse, per ogni " +
       "pixel viene inoltre registrato quale orbita fornisce lì i risultati migliori. Le orbite " +
@@ -417,7 +422,8 @@ const I18N = {
     "modal.workflow.li3": "<strong>GMSI per orbita:</strong> consultare la carta di quell'orbita e verificare se la direzione di vista corrisponde alla direzione di movimento attesa del versante.",
     "modal.workflow.li4": "<strong>Shadow/Layover per orbita:</strong> in caso di dubbi, verificare se il luogo si trova in ombra radar o è distorto da layover per quell'orbita.",
     "modal.source":
-      "Fonte: Jacquemart &amp; Manconi (2025). Dati di base: immagini di coerenza del satellite " +
+      "Fonte: Jacquemart, M., &amp; Manconi, A. (2025). TASK 5.1b – A ground motion sensitivity index (GMSI) to facilitate the interpretation of satellite-based radar measurements in alpine terrain. In A. Bast, M. Bründl, &amp; M. Phillips (Eds.), <em>WSL Berichte: Vol. 181. WSL research programme Climate Change Impacts on Alpine Mass Movements - CCAMM: project report</em> (pp. 149–153). <a href="https://doi.org/10.55419/wsl:41914" target="_blank" rel="noopener">https://doi.org/10.55419/wsl:41914</a><br>" +
+      "Dati di base: immagini di coerenza del satellite " +
       "Sentinel&#8209;1 (ESA/Copernicus), estate 2018–2021; modello digitale del terreno.",
 
     "basemap.switch": "Cambia sfondo cartografico",
@@ -485,7 +491,7 @@ const I18N = {
     "legend.gmsiTitle": "GMSI",
     "legend.trackTitle": "Orbita",
     "legend.shadowTitle": "Ombra/Layover",
-    "legend.gmsi.green": "GMSI ≥ 0,4 – condizioni molto buone",
+    "legend.gmsi.green": "GMSI ≥ 0,4 – condizioni buone",
     "legend.gmsi.yellow": "GMSI 0,2 – 0,4 – misurazioni possibili, ma con cautela",
     "legend.gmsi.red": "GMSI < 0,2 – condizioni sfavorevoli",
     "legend.gmsi.blocked": "Nessuna misurazione possibile (layover/ombra)",
@@ -504,7 +510,7 @@ const I18N = {
     "area.computing": "Calcolo in corso …",
     "area.error": "La valutazione non è riuscita. Riprovare.",
     "area.size": "Superficie: {area}",
-    "area.class.good": "GMSI ≥ 0,4 – molto buono",
+    "area.class.good": "GMSI ≥ 0,4 – buono",
     "area.class.mid": "GMSI 0,2–0,4 – con cautela",
     "area.class.bad": "GMSI < 0,2 – sfavorevole",
     "area.class.blocked": "Nessuna misurazione possibile (layover/ombra)",
@@ -552,7 +558,7 @@ const I18N = {
     "tour.layers.title": "Livelli (layer)",
     "tour.layers.text": "Un livello è uno strato della carta sovrapposto alla carta di base. Qui attivi e disattivi i livelli. Ogni riga è un livello con casella di controllo e campione di colore. I livelli sono ordinati in gruppi (1, 2 …).",
     "tour.overview.title": "GMSI Panoramica",
-    "tour.overview.text": "Questa è la carta principale. <strong>Combina tutte le orbite del satellite (track)</strong>: in ogni punto mostra il <strong>valore GMSI migliore</strong> raggiunto da un qualsiasi track. I colori: <strong>blu</strong> = condizioni molto buone (GMSI ≥ 0,4), <strong>arancione</strong> = misurazioni con cautela (0,2–0,4), <strong>rosso</strong> = condizioni sfavorevoli (&lt; 0,2), <strong>grigio</strong> = in nessun track è possibile una misurazione (layover/ombra).",
+    "tour.overview.text": "Questa è la carta principale. <strong>Combina tutte le orbite del satellite (track)</strong>: in ogni punto mostra il <strong>valore GMSI migliore</strong> raggiunto da un qualsiasi track. I colori: <strong>blu</strong> = condizioni buone (GMSI ≥ 0,4), <strong>arancione</strong> = misurazioni con cautela (0,2–0,4), <strong>rosso</strong> = condizioni sfavorevoli (&lt; 0,2), <strong>grigio</strong> = in nessun track è possibile una misurazione (layover/ombra).",
     "tour.toggle.title": "Attivare e disattivare un livello",
     "tour.toggle.text": "Con l'<strong>interruttore</strong> mostri o nascondi il livello. Sotto, il <strong>cursore dell'opacità</strong> regola quanto il livello copre la carta di base (100 % = completamente coprente, meno = la carta di base traspare di più). Il cursore compare solo per i livelli attivi.",
     "tour.modes.title": "Cambiare modalità",
@@ -562,7 +568,7 @@ const I18N = {
     "tour.best.title": "Track migliore per pixel",
     "tour.best.text": "Questo livello mostra <strong>quale orbita del satellite (track)</strong> fornisce il valore GMSI migliore in ogni punto. Ogni track ha un proprio colore, indicato nella legenda. Aiuta a scegliere il track per un versante.",
     "tour.legend.title": "Legenda",
-    "tour.legend.text": "La legenda spiega i colori dei livelli attivi: <strong>blu</strong> = molto buono, <strong>arancione</strong> = con cautela, <strong>rosso</strong> = sfavorevole, <strong>grigio</strong> = nessuna misurazione possibile (layover/ombra). Si adatta quando attivi o disattivi i livelli.",
+    "tour.legend.text": "La legenda spiega i colori dei livelli attivi: <strong>blu</strong> = buono, <strong>arancione</strong> = con cautela, <strong>rosso</strong> = sfavorevole, <strong>grigio</strong> = nessuna misurazione possibile (layover/ombra). Si adatta quando attivi o disattivi i livelli.",
     "tour.expert.title": "Modalità Avanzato",
     "tour.expert.text": "<strong>Avanzato</strong> mostra in più i gruppi 3 e 4 con i livelli dei singoli track. Ora puoi attivare <strong>più livelli contemporaneamente</strong>, ad es. un track con le sue aree d'ombra.",
     "tour.tracks.title": "GMSI per track",
@@ -657,6 +663,7 @@ const I18N = {
     "about.contact": "Feedback, questions and error reports to",
     "about.dataH": "Data status",
     "about.gmsi": "<strong>GMSI</strong> (Ground Motion Sensitivity Index, version 2): Jacquemart &amp; Manconi (2025), computed from Sentinel-1 data (Copernicus/ESA), summer data 2018–2021.",
+    "about.citation": "Jacquemart, M., &amp; Manconi, A. (2025). TASK 5.1b – A ground motion sensitivity index (GMSI) to facilitate the interpretation of satellite-based radar measurements in alpine terrain. In A. Bast, M. Bründl, &amp; M. Phillips (Eds.), <em>WSL Berichte: Vol. 181. WSL research programme Climate Change Impacts on Alpine Mass Movements - CCAMM: project report</em> (pp. 149–153). <a href="https://doi.org/10.55419/wsl:41914" target="_blank" rel="noopener">https://doi.org/10.55419/wsl:41914</a>",
     "about.record": "<strong>Raster data of this map:</strong> Zenodo, record",
     "about.permafrost": "<strong>Permafrost map:</strong> Kenner et al. (2018), Permafrost and Ground Ice Map of Switzerland, SLF (Zenodo 1470165).",
     "about.swisstopo": "<strong>Maps:</strong> basemaps, glacier extent (with GLAMOS) and slope angle © swisstopo. Height, slope and aspect at a point: swisstopo height service.",
@@ -684,11 +691,11 @@ const I18N = {
       "0 (unsuitable) to 1 (very well suited) and is given for every 10×10&nbsp;metre " +
       "pixel.",
     "modal.howToRead.h": "How to read the map",
-    "modal.howToRead.green": "<strong>Blue (GMSI ≥ 0.4):</strong> very good conditions – good radar measurements are likely here.",
+    "modal.howToRead.green": "<strong>Blue (GMSI ≥ 0.4):</strong> good conditions – good radar measurements are likely here.",
     "modal.howToRead.yellow": "<strong>Orange (GMSI 0.2–0.4):</strong> measurements are possible, but results should be interpreted with caution.",
     "modal.howToRead.red": "<strong>Red (GMSI &lt; 0.2):</strong> poor conditions – good measurements are harder to obtain, and movements can be easily missed or difficult to interpret. Measurements are not entirely impossible, though.",
-    "modal.howToRead.blocked": "<strong>Grey (no measurement possible):</strong> areas in radar shadow or with layover distortion, as well as areas where the radar images are no longer reliably comparable after just 6&nbsp;days. No track provides a GMSI value here.",
-    "modal.howToRead.none": "<strong>No colour:</strong> no data – areas outside Graubünden and lakes.",
+    "modal.howToRead.blocked": "<strong>Grey (no measurement possible):</strong> areas in radar shadow or with layover distortion, No track provides a GMSI value here.",
+    "modal.howToRead.none": "<strong>No colour:</strong> no data – areas outside Graubünden and areas that never yield reliable measurements (radar images are no longer comparable after just 6&nbsp;days, typical for glaciers, water bodies and forest).",
     "modal.redWarning.h": "Important: red doesn't automatically mean “no movement”",
     "modal.redWarning.intro": "A low GMSI value can have very different causes – and the map alone doesn't show which one applies:",
     "modal.redWarning.li1": "The geometry is unfavourable, e.&nbsp;g. a steep slope that the satellite cannot see well from its viewing angle.",
@@ -702,6 +709,7 @@ const I18N = {
     "modal.whatNot.h": "What the map doesn't show",
     "modal.whatNot.li1": "The map is based on <strong>summer data from 2018–2021</strong> and therefore shows best-case conditions. With snow cover, reliable measurements are generally not possible regardless of the GMSI value.",
     "modal.whatNot.li2": "Areas that changed a lot specifically during 2018–2021 may show lower values on the map, even if conditions have since improved again.",
+    "modal.whatNot.li3": "The map applies only to <strong>Sentinel&#8209;1 (C-band, wavelength approx. 5.4&nbsp;cm)</strong>. This band is more sensitive to vegetation and rapid ground motion than longer-wavelength radar systems; the GMSI says nothing about other satellites or viewing geometries.",
     "modal.howMade.h": "How was the map created? (brief explanation)",
     "modal.howMade.intro":
       "The basis is radar imagery from the <strong>Sentinel&#8209;1</strong> satellite (part of the European " +
@@ -710,7 +718,7 @@ const I18N = {
       "per pixel:",
     "modal.howMade.li1": "<strong>Data reliability:</strong> how similar does the ground surface look on radar images over time? If it changes quickly (e.&nbsp;g. due to vegetation, snow or ground motion), this similarity drops fast.",
     "modal.howMade.li2": "<strong>Visibility:</strong> can the satellite even “see” the location, or is it in radar shadow or distorted by steep terrain (layover)?",
-    "modal.howMade.li3": "<strong>Measurement sensitivity:</strong> radar only measures motion in the satellite's line of sight. A slope that moves sideways relative to the satellite is harder to detect than one that moves directly towards or away from it.",
+    "modal.howMade.li3": "<strong>Measurement sensitivity:</strong> radar only measures motion in the satellite's line of sight. A slope that moves sideways relative to the satellite is harder to detect than one that moves directly towards or away from it. It is assumed that the slope moves along the fall line (a simplifying but common assumption).",
     "modal.howMade.outro":
       "Since several satellite orbits (tracks) fly over Switzerland from different directions, " +
       "the map also records, for every pixel, which track gives the best results there. " +
@@ -723,7 +731,8 @@ const I18N = {
     "modal.workflow.li3": "<strong>GMSI per track:</strong> look at that track's map and check whether its viewing direction matches the slope's expected direction of movement.",
     "modal.workflow.li4": "<strong>Shadow/Layover per track:</strong> if anything is unclear, check whether the location is in radar shadow or distorted by layover for that track.",
     "modal.source":
-      "Source: Jacquemart &amp; Manconi (2025). Underlying data: coherence images from the " +
+      "Source: Jacquemart, M., &amp; Manconi, A. (2025). TASK 5.1b – A ground motion sensitivity index (GMSI) to facilitate the interpretation of satellite-based radar measurements in alpine terrain. In A. Bast, M. Bründl, &amp; M. Phillips (Eds.), <em>WSL Berichte: Vol. 181. WSL research programme Climate Change Impacts on Alpine Mass Movements - CCAMM: project report</em> (pp. 149–153). <a href="https://doi.org/10.55419/wsl:41914" target="_blank" rel="noopener">https://doi.org/10.55419/wsl:41914</a><br>" +
+      "Underlying data: coherence images from the " +
       "Sentinel&#8209;1 satellite (ESA/Copernicus), summer 2018–2021; digital terrain model.",
 
     "basemap.switch": "Switch basemap",
@@ -791,7 +800,7 @@ const I18N = {
     "legend.gmsiTitle": "GMSI",
     "legend.trackTitle": "Track",
     "legend.shadowTitle": "Shadow/Layover",
-    "legend.gmsi.green": "GMSI ≥ 0.4 – very good conditions",
+    "legend.gmsi.green": "GMSI ≥ 0.4 – good conditions",
     "legend.gmsi.yellow": "GMSI 0.2 – 0.4 – measurements possible, but with caution",
     "legend.gmsi.red": "GMSI < 0.2 – poor conditions",
     "legend.gmsi.blocked": "No measurement possible (layover/shadow)",
@@ -810,13 +819,13 @@ const I18N = {
     "area.computing": "Calculating …",
     "area.error": "The assessment failed. Please try again.",
     "area.size": "Area: {area}",
-    "area.class.good": "GMSI ≥ 0.4 – very good",
+    "area.class.good": "GMSI ≥ 0.4 – good",
     "area.class.mid": "GMSI 0.2–0.4 – with caution",
     "area.class.bad": "GMSI < 0.2 – poor",
     "area.class.blocked": "No measurement possible (layover/shadow)",
     "area.class.nodata": "No data (outside, lake)",
-    "area.sum.good": "Conditions are very good on {good} % of the area. Overall the area is well suited to radar measurements.",
-    "area.sum.mixed": "Conditions are very good on only {good} % of the area; measurements are possible on {usable} %. Suitability is mixed.",
+    "area.sum.good": "Conditions are good on {good} % of the area. Overall the area is well suited to radar measurements.",
+    "area.sum.mixed": "Conditions are good on only {good} % of the area; measurements are possible on {usable} %. Suitability is mixed.",
     "area.sum.poor": "Measurements are poor or not possible on {poor} % of the area. Radar measurements are only of limited suitability here.",
     "area.sum.none": "This area contains no assessable values.",
     "area.bestTracks": "Best track (share of the assessable area)",
@@ -858,7 +867,7 @@ const I18N = {
     "tour.layers.title": "Layers",
     "tour.layers.text": "A layer is a map overlay on top of the basemap. This is where you switch layers on and off. Each row is a layer with a checkbox and a colour swatch. Layers are arranged in groups (1, 2 …).",
     "tour.overview.title": "GMSI overview",
-    "tour.overview.text": "This is the main map. It <strong>combines all satellite tracks</strong>: at each location it shows the <strong>best GMSI value</strong> that any track reaches there. The colours: <strong>blue</strong> = very good conditions (GMSI ≥ 0.4), <strong>orange</strong> = measurements with caution (0.2–0.4), <strong>red</strong> = poor conditions (&lt; 0.2), <strong>grey</strong> = no measurement possible in any track (layover/shadow).",
+    "tour.overview.text": "This is the main map. It <strong>combines all satellite tracks</strong>: at each location it shows the <strong>best GMSI value</strong> that any track reaches there. The colours: <strong>blue</strong> = good conditions (GMSI ≥ 0.4), <strong>orange</strong> = measurements with caution (0.2–0.4), <strong>red</strong> = poor conditions (&lt; 0.2), <strong>grey</strong> = no measurement possible in any track (layover/shadow).",
     "tour.toggle.title": "Switch a layer on and off",
     "tour.toggle.text": "The <strong>switch</strong> shows or hides the layer. Below it, the <strong>opacity slider</strong> sets how strongly the layer covers the basemap (100 % = fully opaque, lower = more of the basemap shows through). The slider only appears for layers that are switched on.",
     "tour.modes.title": "Switch mode",
@@ -868,7 +877,7 @@ const I18N = {
     "tour.best.title": "Best track per pixel",
     "tour.best.text": "This layer shows <strong>which satellite track</strong> gives the best GMSI value at each location. Each track has its own colour, listed in the legend. It helps you choose the track for a slope.",
     "tour.legend.title": "Legend",
-    "tour.legend.text": "The legend explains the colours of the layers that are switched on: <strong>blue</strong> = very good, <strong>orange</strong> = with caution, <strong>red</strong> = poor, <strong>grey</strong> = no measurement possible (layover/shadow). It adapts when you switch layers on or off.",
+    "tour.legend.text": "The legend explains the colours of the layers that are switched on: <strong>blue</strong> = good, <strong>orange</strong> = with caution, <strong>red</strong> = poor, <strong>grey</strong> = no measurement possible (layover/shadow). It adapts when you switch layers on or off.",
     "tour.expert.title": "Advanced mode",
     "tour.expert.text": "<strong>Advanced</strong> also shows groups 3 and 4 with layers for single tracks. You can now switch on <strong>several layers at once</strong>, e.g. a track together with its shadow areas.",
     "tour.tracks.title": "GMSI per track",
