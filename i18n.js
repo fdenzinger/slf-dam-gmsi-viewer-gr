@@ -100,7 +100,7 @@ const I18N = {
       "Erdbeobachtungsprogramms Copernicus, betrieben mit der Weltraumorganisation ESA). Er überfliegt die Schweiz regelmässig und liefert " +
       "seine Radarbilder frei und öffentlich zugänglich. Der GMSI kombiniert daraus drei Faktoren " +
       "pro Bildpunkt:",
-    "modal.howMade.li1": "<strong>Datenzuverlässigkeit:</strong> Wie ähnlich sieht die Erdoberfläche auf Radarbildern über die Zeit hinweg aus? Verändert sie sich schnell (z.&nbsp;B. durch Vegetation, Schnee oder Bodenbewegung), nimmt diese Ähnlichkeit rasch ab.",
+    "modal.howMade.li1": "<strong>Datenzuverlässigkeit (Kohärenz):</strong> Wie ähnlich sieht die Erdoberfläche auf Radarbildern über die Zeit hinweg aus? Verändert sie sich schnell (z.&nbsp;B. durch Vegetation, Schnee oder Bodenbewegung), nimmt diese Ähnlichkeit rasch ab.",
     "modal.howMade.li2": "<strong>Sichtbarkeit:</strong> Kann der Satellit den Ort überhaupt „sehen“, oder liegt er im Radarschatten bzw. wird durch steiles Gelände verzerrt (Layover)?",
     "modal.howMade.li3": "<strong>Messempfindlichkeit:</strong> Radar misst Bewegung nur in Blickrichtung des Satelliten. Ein Hang, der sich seitlich zum Satelliten bewegt, ist schwerer zu erfassen als einer, der sich direkt auf ihn zu oder von ihm weg bewegt. Vereinfachend wird angenommen, dass sich der Hang entlang der Falllinie bewegt.",
     "modal.howMade.outro":
@@ -410,7 +410,7 @@ const I18N = {
       "europeo di osservazione della Terra Copernicus, gestito con l'agenzia spaziale ESA). Sorvola regolarmente la Svizzera e " +
       "mette a disposizione le sue immagini radar in modo libero e pubblico. Il GMSI combina tre fattori " +
       "per ogni pixel:",
-    "modal.howMade.li1": "<strong>Affidabilità dei dati:</strong> quanto si assomiglia la superficie del terreno nelle immagini radar nel tempo? Se cambia rapidamente (p.&nbsp;es. a causa di vegetazione, neve o movimenti del terreno), questa somiglianza diminuisce in fretta.",
+    "modal.howMade.li1": "<strong>Affidabilità dei dati (coerenza):</strong> quanto si assomiglia la superficie del terreno nelle immagini radar nel tempo? Se cambia rapidamente (p.&nbsp;es. a causa di vegetazione, neve o movimenti del terreno), questa somiglianza diminuisce in fretta.",
     "modal.howMade.li2": "<strong>Visibilità:</strong> il satellite riesce a «vedere» il luogo, oppure questo si trova in ombra radar o è distorto da un terreno ripido (layover)?",
     "modal.howMade.li3": "<strong>Sensibilità di misura:</strong> il radar misura il movimento solo nella direzione di vista del satellite. Un pendio che si muove lateralmente rispetto al satellite è più difficile da rilevare di uno che si muove direttamente verso di esso o in allontanamento. Si assume, in modo semplificato, che il versante si muova lungo la linea di massima pendenza.",
     "modal.howMade.outro":
@@ -719,7 +719,7 @@ const I18N = {
       "Copernicus Earth observation programme, operated with the ESA space agency). It flies over Switzerland regularly and makes " +
       "its radar images freely and publicly available. The GMSI combines three factors " +
       "per pixel:",
-    "modal.howMade.li1": "<strong>Data reliability:</strong> how similar does the ground surface look on radar images over time? If it changes quickly (e.&nbsp;g. due to vegetation, snow or ground motion), this similarity drops fast.",
+    "modal.howMade.li1": "<strong>Data reliability (coherence):</strong> how similar does the ground surface look on radar images over time? If it changes quickly (e.&nbsp;g. due to vegetation, snow or ground motion), this similarity drops fast.",
     "modal.howMade.li2": "<strong>Visibility:</strong> can the satellite even “see” the location, or is it in radar shadow or distorted by steep terrain (layover)?",
     "modal.howMade.li3": "<strong>Measurement sensitivity:</strong> radar only measures motion in the satellite's line of sight. A slope that moves sideways relative to the satellite is harder to detect than one that moves directly towards or away from it. As a simplification, the slope is assumed to move along the fall line.",
     "modal.howMade.outro":
